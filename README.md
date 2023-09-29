@@ -7,7 +7,7 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 ## Features Obrigatórias:
 - [ ] **Adicionar Tarefas:** O usuário pode adicionar mais de uma tarefa na lista.
 - [ ] **Deletar Tarefa:** O usuário pode apagar uma tarefa da lista.
-- [ ] **Deletar Tarefas Multiples:** O usuário pode apagar mais de uma tarefa na lista ao mesmo tempo.
+- [ ] **Deletar Tarefas Multiplas:** O usuário pode apagar mais de uma tarefa na lista ao mesmo tempo.
 - [ ] **Editar Tarefa:** O usuário pode editar uma tarefa da lista.
 - [ ] **Tarefa Concluída:** Quando uma tarefa for concluída ela deve ficar riscada.
 - [ ] **Contador de Tarefas Criadas:** O usuário precisa ver quantas tarefas foram criadas.
@@ -27,7 +27,6 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 - **Código Limpo:** Organização e legibilidade do código.
 - **Implementação das Features:** Funcionamento correto de todas as features obrigatórias e bônus.
 - **Design:** Adesão ao design proposto no Figma e atenção aos detalhes.
-- **Responsividade:** A aplicação deve apresentar uma boa usabilidade em diferentes dispositivos e tamanhos de tela.
 
 ## Submissão:
 - Faça um fork deste repositório e submeta um pull request quando você terminar.
