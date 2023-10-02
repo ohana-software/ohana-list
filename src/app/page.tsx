@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Flex, Text, useColorMode } from '@chakra-ui/react'
 import Image from 'next/image'
 
@@ -23,7 +25,13 @@ export default function Home() {
         Ohana List
       </Text>
 
-      <Box position="absolute" right={30} top={30} onClick={toggleColorMode}>
+      <Box
+        position="absolute"
+        right={30}
+        top={30}
+        onClick={toggleColorMode}
+        cursor="pointer"
+      >
         <Image
           src="/color-mode.svg"
           alt="Color mode toggle button"
