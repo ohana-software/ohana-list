@@ -1,7 +1,8 @@
 'use client'
+import { Center } from '@chakra-ui/react'
 
 export default function Home() {
   return (
-    <main>app</main>
+    <main className='container'>app</main>
   )
 }
