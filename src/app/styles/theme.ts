@@ -5,4 +5,9 @@ export const theme = extendTheme({
         heading: 'Roboto',
         body:'Roboto'
     },
+    colors:{
+        gray:{
+            "200":"#D9D9D9",
+            },
+        },
 })

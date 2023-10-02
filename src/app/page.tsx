@@ -1,12 +1,10 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box,Heading } from '@chakra-ui/react'
+import Header from './components/Header/Header'
 export default function Home() {
   return(
-    <Box as="main">
-        <Text
-        textColor="pink.500"
-        >
-          página todolist com chakraUI funcional
-        </Text>
-    </Box>
+    <>
+      <Header />
+      <Box as="main"></Box> 
+    </>
   )
 }
