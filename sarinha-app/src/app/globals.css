@@ -1,3 +1,10 @@
+.title {
+  background: linear-gradient(90deg, #E9C347 0.27%, #D16F61 54%, #B32694 96.67%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .container {
   min-height: 100vh;
   background-color: '#F5F5F5';
