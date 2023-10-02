@@ -1,6 +1,7 @@
 import { Box,Heading,IconButton,Input,Button,Flex } from '@chakra-ui/react'
-import { Moon } from '../atom/Icons'
 import { SearchBar } from '../atom/SearchBar'
+import { BtnTheme } from '../atom/ThemeBtn'
+import { Plus } from '../atom/Icons'
 
 export default function Header() {
     return(
@@ -11,25 +12,10 @@ export default function Header() {
         textAlign="center"
         verticalAlign="middle"
         display="table-cell"
+        position="relative"
         >
-            <IconButton 
-                colorScheme="transparent"
-                aria-label='botão mudar tema'
-                icon={<Moon />}
-                position="absolute"
-                right="0"
-                top="0"
-                margin={{base:"20px 18px 0 0",md:"36px 22px 0 0", lg:"41px 36px 0 0"}}
-                w={{base:"5vh",md:"35px",lg:"35px"}} 
-            />
-            <Heading
-                fontFamily="Inter,sans-serif"
-                bgGradient='linear(to right, #E9C347 42%, #D16F61 50%, #B32694 62%)'
-                bgClip='text'
-                fontSize={{ base: "24px", md: "36px", lg: "40px" }}
-                fontWeight='black'
-                w="100vw"
-            >
+            <BtnTheme />
+            <Heading>
                 Ohana List
             </Heading>
             <SearchBar />

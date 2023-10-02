@@ -2,7 +2,7 @@
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { ChakraProvider,CSSReset,ColorModeProvider,extendTheme} from '@chakra-ui/react'
+import { ChakraProvider,ColorModeScript} from '@chakra-ui/react'
 import  { theme }  from './styles/theme'
 import { CacheProvider } from '@chakra-ui/next-js'
 
@@ -22,6 +22,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <CacheProvider>
             <ChakraProvider resetCSS  theme={theme}>
+              <ColorModeScript initialColorMode={theme.config.initialColorMode} />
               {children}
             </ChakraProvider>
           </CacheProvider>

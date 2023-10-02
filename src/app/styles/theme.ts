@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme,type ThemeConfig } from "@chakra-ui/react";
 
 const breakpoints = {
     base: "0px",
@@ -8,6 +8,14 @@ const breakpoints = {
     xl: "1200px",
     "2xl": "1536px",
 };
+const boxSizing = {
+    borderBox:"border-box;"
+};
+
+const config = {
+    initialColorMode: 'light',
+    useSystemColorMode: true,
+}
 
 export const theme = extendTheme({
     fonts: {
@@ -22,5 +30,9 @@ export const theme = extendTheme({
             "500":"#ECB62A",
             },
         },
-    breakpoints
+    breakpoints,
+    boxSizing:{
+        boxSizing:"border-box"
+    },
+    config
 })
