@@ -1,10 +1,18 @@
+import { TaskProps } from '@/app/page'
 import { Button, Flex, Text } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useState } from 'react'
 
-export function Task() {
-  const [isChecked, setIsChecked] = useState(false)
+interface TaskComponentProps {
+  task: TaskProps
+  handleDeleteTask: (id: string) => void
+  handleSetIsChecked: (id: string) => void
+}
 
+export function Task({
+  task,
+  handleDeleteTask,
+  handleSetIsChecked,
+}: TaskComponentProps) {
   return (
     <Flex
       align="center"
@@ -14,8 +22,8 @@ export function Task() {
       p="1rem"
       borderRadius="8px"
     >
-      <Button bg="transparent" onClick={() => setIsChecked((state) => !state)}>
-        {isChecked ? (
+      <Button bg="transparent" onClick={() => handleSetIsChecked(task.id)}>
+        {task.isChecked ? (
           <Image
             src="/checked.svg"
             alt="mark as task completed icon"
@@ -31,11 +39,10 @@ export function Task() {
           />
         )}
       </Button>
-      <Text textDecoration={isChecked ? 'line-through' : ''}>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-        Duis vel sed fames integer.
+      <Text textDecoration={task.isChecked ? 'line-through' : ''} minW="35vw">
+        {task.title}
       </Text>
-      <Button>
+      <Button onClick={() => handleDeleteTask(task.id)}>
         <Image src="/trash.svg" alt="delete task icon" height={24} width={24} />
       </Button>
     </Flex>

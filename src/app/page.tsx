@@ -1,10 +1,45 @@
 'use client'
 
+import { useState } from 'react'
 import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/react'
 import Image from 'next/image'
+import { v4 as uuidv4 } from 'uuid';
+
+import { Task } from '@/components/task'
+
+export interface TaskProps {
+  id: string
+  title: string
+  isChecked: boolean
+}
 
 export default function Home() {
+  const [tasks, setTasks] = useState<TaskProps[]>([])
+  const [inputText, setInputText] = useState('')
   const { toggleColorMode } = useColorMode()
+
+  function handleAddTask() {
+    setTasks((tasks) => [...tasks, { title: inputText, isChecked: false, id: uuidv4() }])
+  }
+
+  function handleDeleteTask(id: string) {
+    const newTasksList = tasks.filter((task) => task.id !== id)
+    setTasks(newTasksList)
+  }
+
+  function handleSetIsChecked(id: string) {
+    const newTasksList = tasks.map((task) => {
+      if (id === task.id) {
+        return {
+          ...task,
+          isChecked: !task.isChecked
+        }
+      }
+      return task
+    })
+
+    setTasks(newTasksList)
+  }
 
   return (
     <>
@@ -62,6 +97,8 @@ export default function Home() {
               }}
               borderRadius="8px"
               zIndex="10"
+              onChange={(event) => setInputText(event.target.value)}
+              value={inputText}
             />
             <Button
               p="1rem"
@@ -71,6 +108,7 @@ export default function Home() {
               color="gray.100"
               fontWeight="bold"
               gap="8px"
+              onClick={handleAddTask}
             >
               Criar
               <Image
@@ -113,29 +151,44 @@ export default function Home() {
           <Flex
             w="40vw"
             mt="1.5rem"
-            py="4rem"
-            px="1.5rem"
+            py={tasks.length === 0 ? '4rem' : ''}
+            px={tasks.length === 0 ? '1.5rem' : ''}
             flexDirection="column"
             justify="center"
             align="center"
             gap="1rem"
-            borderTop="1px solid"
+            borderTop={tasks.length === 0 ? '1px solid' : ''}
             borderTopColor="gray.400"
           >
-            <Image
-              src="/clipboard.svg"
-              height={56}
-              width={56}
-              alt="Clipboard icon"
-            />
-            <Box>
-              <Text color="gray.300" fontWeight="bold">
-                Você ainda não tem tarefas cadastradas
-              </Text>
-              <Text color="gray.300">
-                Crie tarefas e organize seus itens a fazer
-              </Text>
-            </Box>
+            {tasks.length === 0 ? (
+              <>
+                <Image
+                  src="/clipboard.svg"
+                  height={56}
+                  width={56}
+                  alt="Clipboard icon"
+                />
+                <Box>
+                  <Text color="gray.300" fontWeight="bold">
+                    Você ainda não tem tarefas cadastradas
+                  </Text>
+                  <Text color="gray.300">
+                    Crie tarefas e organize seus itens a fazer
+                  </Text>
+                </Box>
+              </>
+            ) : (
+              <>
+                {tasks.map((task) => (
+                  <Task
+                    task={task}
+                    handleDeleteTask={handleDeleteTask}
+                    handleSetIsChecked={handleSetIsChecked}
+                    key={task.id}
+                  />
+                ))}
+              </>
+            )}
           </Flex>
         </Flex>
       </Flex>
