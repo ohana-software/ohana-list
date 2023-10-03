@@ -131,7 +131,7 @@ export default function Home() {
                 px="10px"
                 py="2px"
               >
-                0
+                {tasks.length}
               </Box>
             </Flex>
             <Flex gap="8px" align="center">
@@ -143,7 +143,7 @@ export default function Home() {
                 px="10px"
                 py="2px"
               >
-                0
+                {tasks.filter((task) => task.isChecked === true).length}
               </Box>
             </Flex>
           </Flex>
