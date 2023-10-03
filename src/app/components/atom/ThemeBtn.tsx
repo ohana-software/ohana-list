@@ -1,5 +1,5 @@
 "use client";
-import {IconButton,Heading, useColorMode,Button } from '@chakra-ui/react'
+import {IconButton, useColorMode } from '@chakra-ui/react'
 import { Moon,Sun } from '../atom/Icons'
 
 

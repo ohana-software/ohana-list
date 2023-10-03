@@ -13,7 +13,7 @@ const boxSizing = {
 };
 
 const config = {
-    initialColorMode: 'light',
+    initialColorMode: 'dark',
     useSystemColorMode: true,
 }
 
@@ -25,6 +25,8 @@ export const theme = extendTheme({
     colors:{
         gray:{
             "200":"#D9D9D9",
+            "500":"#262626",
+            "700":"#0D0D0D",
             },
         yellow:{
             "500":"#ECB62A",
