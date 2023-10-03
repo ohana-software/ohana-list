@@ -51,9 +51,10 @@ export default function Home() {
               color: "#F5F5F5",
             }}
           >
-            Criar<AddCircleIcon />
+            Criar<AddCircleIcon color='#F2F2F2' />
           </Flex>
         </Flex>
+
         <Flex
           width='736px'
           m='0 auto'
@@ -112,7 +113,7 @@ export default function Home() {
               alignItems='center'
               gap='16px'
             >
-              <ClipboardIcon />
+              <ClipboardIcon w="56px" h="56px"/>
               <Box
                 as='p'
                 lineHeight='22.4px'
