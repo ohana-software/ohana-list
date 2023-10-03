@@ -2,10 +2,77 @@
 import { Center, Flex, Box } from '@chakra-ui/react'
 import AddCircleIcon from './components/icons/AddCircleIcon'
 import ClipboardIcon from './components/icons/ClipboardIcon'
-import Tasklist from './components/task/tasklist'
+import TaskList from './components/task/TaskList'
+import Task from './models/Task'
 import { useState } from 'react'
 
 export default function Home() {
+  const [newTask, setNewTask] = useState<string>('');
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [finishedTasks, setFinishedTasks] = useState<Task[]>([]);
+  const [idList, setIdList] = useState<number[]>([]);
+
+  function handleNewTask(e: any) {
+    setNewTask(e.target.value);
+  }
+
+  function handleAddTask() {
+    const task: Task = {
+      id: idList.length + 1,
+      description: newTask,
+      finished: false
+    }
+
+    setTasks(tasks => [...tasks, task])
+    setIdList(id => [...id, task.id])
+    setNewTask('')
+  }
+
+  let dashboard;
+  if (tasks.length > 0 || finishedTasks.length > 0) {
+    dashboard = (
+      <TaskList tasks={tasks} />
+    )
+  } else {
+    dashboard = (
+      <Center
+      textAlign='center'
+      p='64px 24px'
+      fontSize='16px'
+      color='#808080'
+      borderRadius='8px'
+      borderTop='1px'
+      borderColor='#333'
+    >
+      <Flex
+        flexDirection='column'
+        alignItems='center'
+        gap='16px'
+      >
+        <ClipboardIcon w="56px" h="56px"/>
+        <Box
+          as='p'
+          lineHeight='22.4px'
+        >
+          <Box
+            as='span'
+            fontWeight={'700'}
+          >
+            Você ainda não tem tarefas cadastradas
+          </Box>
+          <br/>
+          <Box
+            as='span'
+            fontWeight={'400'}
+          >
+            Crie tarefas e organize seus itens a fazer
+          </Box>
+        </Box>
+      </Flex>
+    </Center>
+    )
+  }
+
   return (
     <main className='container'>
         <Center
@@ -36,6 +103,8 @@ export default function Home() {
             border='1px'
             borderColor='#D9D9D9'
             p='16px'
+            value={newTask}
+            onChange={handleNewTask}
           />
           <Flex
             as='button'
@@ -52,6 +121,7 @@ export default function Home() {
               background: "#D16F61",
               color: "#F5F5F5",
             }}
+            onClick={handleAddTask}
           >
             Criar<AddCircleIcon color='#F2F2F2' />
           </Flex>
@@ -82,7 +152,7 @@ export default function Home() {
                 bg='#D9D9D9'
                 color='#333'
               >
-                0
+                { tasks.length }
               </Box>
             </Flex>
             <Flex
@@ -97,46 +167,11 @@ export default function Home() {
                 bg='#D9D9D9'
                 color='#333'
               >
-                0
+                { finishedTasks.length }
               </Box>
             </Flex>
           </Flex>
-          <Center
-            textAlign='center'
-            p='64px 24px'
-            fontSize='16px'
-            color='#808080'
-            borderRadius='8px'
-            borderTop='1px'
-            borderColor='#333'
-          >
-            <Flex
-              flexDirection='column'
-              alignItems='center'
-              gap='16px'
-            >
-              <ClipboardIcon w="56px" h="56px"/>
-              <Box
-                as='p'
-                lineHeight='22.4px'
-              >
-                <Box
-                  as='span'
-                  fontWeight={'700'}
-                >
-                  Você ainda não tem tarefas cadastradas
-                </Box>
-                <br/>
-                <Box
-                  as='span'
-                  fontWeight={'400'}
-                >
-                  Crie tarefas e organize seus itens a fazer
-                </Box>
-              </Box>
-            </Flex>
-          </Center>
-          <Tasklist />
+            {dashboard}
         </Flex>
     </main>
   )
