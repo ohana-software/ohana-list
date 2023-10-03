@@ -20,6 +20,7 @@ export default function Home() {
 
   function handleAddTask() {
     setTasks((tasks) => [...tasks, { title: inputText, isChecked: false, id: uuidv4() }])
+    setInputText('')
   }
 
   function handleDeleteTask(id: string) {
