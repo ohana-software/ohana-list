@@ -4,13 +4,11 @@ import AddCircleIcon from './components/icons/AddCircleIcon'
 import ClipboardIcon from './components/icons/ClipboardIcon'
 import TaskList from './components/task/TaskList'
 import Task from './models/Task'
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 
 export default function Home() {
   const [newTask, setNewTask] = useState<string>('');
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [finishedTasks, setFinishedTasks] = useState<Task[]>([]);
-  const [idList, setIdList] = useState<number[]>([]);
 
   function handleNewTask(e: any) {
     setNewTask(e.target.value);
@@ -18,18 +16,17 @@ export default function Home() {
 
   function handleAddTask() {
     const task: Task = {
-      id: idList.length + 1,
+      id: tasks.length + 1,
       description: newTask,
       finished: false
     }
 
-    setTasks(tasks => [...tasks, task])
-    setIdList(id => [...id, task.id])
+    setTasks(tasks => [task, ...tasks])
     setNewTask('')
   }
 
   let dashboard;
-  if (tasks.length > 0 || finishedTasks.length > 0) {
+  if (tasks.length > 0) {
     dashboard = (
       <TaskList tasks={tasks} />
     )
@@ -167,7 +164,7 @@ export default function Home() {
                 bg='#D9D9D9'
                 color='#333'
               >
-                { finishedTasks.length }
+                { tasks.filter(task => task.finished == true).length }
               </Box>
             </Flex>
           </Flex>
