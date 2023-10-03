@@ -1,6 +1,4 @@
 "use client";
-
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ChakraProvider,ColorModeScript} from '@chakra-ui/react'
 import  { theme }  from './styles/theme'
