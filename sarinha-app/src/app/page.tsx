@@ -1,6 +1,7 @@
 'use client'
 import { Center, Flex, Button, Box } from '@chakra-ui/react'
 import AddCircleIcon from './components/AddCircleIcon'
+import ClipboardIcon from './components/ClipboardIcon'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         >
           <h1 className='title'>Ohana List</h1>
         </Center>
+
         <Flex 
           width='736px'
           gap='8px'
@@ -51,6 +53,86 @@ export default function Home() {
           >
             Criar<AddCircleIcon />
           </Flex>
+        </Flex>
+        <Flex
+          width='736px'
+          m='0 auto'
+          mt='64px'
+          gap='24px'
+          flexDirection='column'
+        >
+          <Flex
+            justifyContent='space-between'
+            width='100%'
+            fontSize='14px'
+            fontWeight={"700"}
+          >
+            <Flex
+              color='#D57B5A'
+              gap='8px'
+            >
+              Tarefas criadas
+              <Box
+                p='2px 8px'
+                fontSize='12px'
+                borderRadius='999px'
+                bg='#D9D9D9'
+                color='#333'
+              >
+                0
+              </Box>
+            </Flex>
+            <Flex
+              color='#BF477E'
+              gap='8px'
+            >
+              Concluídas
+              <Box
+                p='2px 8px'
+                fontSize='12px'
+                borderRadius='999px'
+                bg='#D9D9D9'
+                color='#333'
+              >
+                0
+              </Box>
+            </Flex>
+          </Flex>
+          <Center
+            textAlign='center'
+            p='64px 24px'
+            fontSize='16px'
+            color='#808080'
+            borderRadius='8px'
+            borderTop='1px'
+            borderColor='#333'
+          >
+            <Flex
+              flexDirection='column'
+              alignItems='center'
+              gap='16px'
+            >
+              <ClipboardIcon />
+              <Box
+                as='p'
+                lineHeight='22.4px'
+              >
+                <Box
+                  as='span'
+                  fontWeight={'700'}
+                >
+                  Você ainda não tem tarefas cadastradas
+                </Box>
+                <br/>
+                <Box
+                  as='span'
+                  fontWeight={'400'}
+                >
+                  Crie tarefas e organize seus itens a fazer
+                </Box>
+              </Box>
+            </Flex>
+          </Center>
         </Flex>
     </main>
   )
