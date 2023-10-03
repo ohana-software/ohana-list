@@ -1,8 +1,8 @@
 'use client'
 import { Box, Flex } from '@chakra-ui/react'
-import TrashIcon from "./icons/TrashIcon"
-import CircleIcon from "./icons/CircleIcon"
-import CheckCircleIcon from './icons/CheckCircleIcon'
+import TrashIcon from "../icons/TrashIcon"
+import CircleIcon from "../icons/CircleIcon"
+import CheckCircleIcon from '../icons/CheckCircleIcon'
 
 interface Props {
   finished: boolean
