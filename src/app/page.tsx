@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/react'
 import Image from 'next/image'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 import { Task } from '@/components/task'
 
@@ -19,7 +19,10 @@ export default function Home() {
   const { toggleColorMode } = useColorMode()
 
   function handleAddTask() {
-    setTasks((tasks) => [...tasks, { title: inputText, isChecked: false, id: uuidv4() }])
+    setTasks((tasks) => [
+      ...tasks,
+      { title: inputText, isChecked: false, id: uuidv4() },
+    ])
     setInputText('')
   }
 
@@ -33,7 +36,21 @@ export default function Home() {
       if (id === task.id) {
         return {
           ...task,
-          isChecked: !task.isChecked
+          isChecked: !task.isChecked,
+        }
+      }
+      return task
+    })
+
+    setTasks(newTasksList)
+  }
+
+  function editTask(id: string, title: string) {
+    const newTasksList = tasks.map((task) => {
+      if (id === task.id) {
+        return {
+          ...task,
+          title,
         }
       }
       return task
@@ -185,6 +202,7 @@ export default function Home() {
                     task={task}
                     handleDeleteTask={handleDeleteTask}
                     handleSetIsChecked={handleSetIsChecked}
+                    editTask={editTask}
                     key={task.id}
                   />
                 ))}

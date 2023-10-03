@@ -26,5 +26,6 @@ export const styleTheme = {
     dark_pink: '#B22D95',
     light_orange: '#D57B5A',
     yellow_button: '#ECB62A',
+    green: '#4BE03F',
   },
 }
