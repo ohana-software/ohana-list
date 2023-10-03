@@ -1,7 +1,7 @@
 'use client'
 import { Center, Flex, Button, Box } from '@chakra-ui/react'
-import AddCircleIcon from './components/AddCircleIcon'
-import ClipboardIcon from './components/ClipboardIcon'
+import AddCircleIcon from './components/icons/AddCircleIcon'
+import ClipboardIcon from './components/icons/ClipboardIcon'
 
 export default function Home() {
   return (
