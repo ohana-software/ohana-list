@@ -1,15 +1,20 @@
 import { Flex } from "@chakra-ui/react";
-import Task from "./Task";
+import TaskDetail from "./TaskDetail";
+import Task from "../../models/Task"
 
-
-export default function Tasklist() {
+interface Props {
+  tasks: Task[]
+}
+export default function TaskList({ tasks }: Props) {
   return (
     <Flex
       flexDirection='column'
       gap='14px'
     >
-      <Task finished={false}/>
-      <Task finished={true}/>
+      { tasks.map((task) =>
+          <TaskDetail key={task.id} task={task}/>
+        ) 
+      }
     </Flex>
   )
 }

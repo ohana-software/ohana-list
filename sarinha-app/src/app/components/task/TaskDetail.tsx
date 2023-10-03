@@ -3,11 +3,12 @@ import { Box, Flex } from '@chakra-ui/react'
 import TrashIcon from "../icons/TrashIcon"
 import CircleIcon from "../icons/CircleIcon"
 import CheckCircleIcon from '../icons/CheckCircleIcon'
+import Task from "../../models/Task"
 
 interface Props {
-  finished: boolean
+  task: Task
 }
-export default function Task({ finished }: Props) {
+export default function TaskDetail({ task }: Props) {
   let boxShadow;
   let circleIcon;
   let trashColor;
@@ -15,7 +16,7 @@ export default function Task({ finished }: Props) {
   let taskDecoration;
   let bgColor;
 
-  if (finished) {
+  if (task.finished) {
     boxShadow = undefined;
     circleIcon = (
       <CheckCircleIcon w='18px' h='18px' color='#B22D95' checkcolor='#D9D9D9' />
@@ -46,7 +47,7 @@ export default function Task({ finished }: Props) {
         <Flex w='24px' h='24px' p='3.273px'>
           { circleIcon }
         </Flex>
-        <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration}>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</Box>
+        <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration}>{task.description ? task.description : '(Sem descrição)'}</Box>
         <Flex
           w='24px'
           h='24px'
