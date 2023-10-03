@@ -1,7 +1,8 @@
 'use client'
-import { Center, Flex, Button, Box } from '@chakra-ui/react'
+import { Center, Flex, Box } from '@chakra-ui/react'
 import AddCircleIcon from './components/icons/AddCircleIcon'
 import ClipboardIcon from './components/icons/ClipboardIcon'
+import Task from './components/Task'
 
 export default function Home() {
   return (
@@ -134,6 +135,8 @@ export default function Home() {
               </Box>
             </Flex>
           </Center>
+          <Task finished={false}/>
+          <Task finished={true}/>
         </Flex>
     </main>
   )
