@@ -10,9 +10,10 @@ import TaskMenu from "./TaskMenu";
 import { useTasksDispatch } from "@/app/context/TaskContext";
 
 interface Props {
+  display: string,
   tasks: Task[]
 }
-export default function TaskList({ tasks }: Props) {
+export default function TaskList({ display, tasks }: Props) {
   const [options, setOptions] = useState(false)
   const [editMode, setEditMode] = useState(true)
   const [selectedTasks, setSelectedTasks] = useState<number[]>([])
@@ -128,6 +129,7 @@ export default function TaskList({ tasks }: Props) {
     mt='64px'
     gap='24px'
     flexDirection='column'
+    display={display}
   >
     <Flex
       justifyContent='space-between'

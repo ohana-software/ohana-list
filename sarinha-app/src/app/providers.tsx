@@ -9,19 +9,11 @@ export function Providers({
   }: { 
   children: React.ReactNode 
   }) {
-    const [tasks, dispatch] = useReducer(
-      tasksReducer,
-      []
-    );
 
   return (
     <CacheProvider>
       <ChakraProvider>
-        <TasksContext.Provider value={tasks}>
-          <TasksDispatchContext.Provider value={dispatch}>
         {children}
-          </TasksDispatchContext.Provider>
-        </TasksContext.Provider>
       </ChakraProvider>
     </CacheProvider>
   )
