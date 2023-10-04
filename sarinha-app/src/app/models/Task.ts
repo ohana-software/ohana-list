@@ -1,7 +1,7 @@
 type Task = {
-  id: number,
-  description: string,
-  finished: boolean
-}
+  id: number;
+  description: string;
+  finished: boolean;
+};
 
-export default Task
+export default Task;

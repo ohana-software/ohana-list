@@ -24,20 +24,27 @@ const colors = {
     },
     danger: "#E25858",
   },
-  fontSizes: {
-    xs: "12px",
-    sm: "14px",
-    md: "16px",
-    lg: "40px",
-  },
-  fontWeights: {
-    regular: 400,
-    bold: 700,
-    black: 900,
-  },
-  lineHeights: {
-    base: "140%",
-  },
 };
 
-export const theme = extendTheme({ breakpoints, colors });
+const fontSizes = {
+  xs: "12px",
+  sm: "14px",
+  md: "16px",
+  lg: "40px",
+};
+
+const fontWeights = {
+  regular: 400,
+  bold: 700,
+  black: 900,
+};
+
+const lineHeights = {
+  base: "140%",
+};
+
+export const theme = extendTheme({
+  colors,
+  fontSizes,
+  fontWeights,
+});
