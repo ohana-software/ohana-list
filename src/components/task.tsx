@@ -75,7 +75,7 @@ export function Task({
       </Button>
       {isOnEditMode ? (
         <Input
-          minW={screen.availWidth < 700 ? '41vw' : '31vw'}
+          minW="31vw"
           bg="gray.400"
           required
           ref={inputRef}
@@ -83,10 +83,7 @@ export function Task({
           value={inputText}
         />
       ) : (
-        <Text
-          textDecoration={task.isChecked ? 'line-through' : ''}
-          minW={screen.availWidth < 700 ? '41vw' : '31vw'}
-        >
+        <Text textDecoration={task.isChecked ? 'line-through' : ''} minW="31vw">
           {task.title}
         </Text>
       )}

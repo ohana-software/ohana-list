@@ -174,7 +174,7 @@ export default function Home() {
               _placeholder={{ color: 'gray.300' }}
               textColor="gray.100"
               p="1rem"
-              w={screen.availWidth < 700 ? '65vw' : '35vw'}
+              w="35vw"
               _focus={{
                 transition: '0.5s',
                 border: '1px solid',
@@ -236,7 +236,7 @@ export default function Home() {
 
           <Flex
             as="ul"
-            w={screen.availWidth < 700 ? '90vw' : '40vw'}
+            w="40vw"
             mt="1.5rem"
             py={tasks.length === 0 ? '4rem' : ''}
             px={tasks.length === 0 ? '1.5rem' : ''}
