@@ -1,7 +1,19 @@
-import { Box, Center, Flex } from "@chakra-ui/react";
+import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import TaskDetail from "./TaskDetail";
 import Task from "../../models/Task"
 import ClipboardIcon from "../icons/ClipboardIcon";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from '@chakra-ui/react'
+import { ChevronDownIcon, DownloadIcon } from "@chakra-ui/icons";
+import TrashIcon from "../icons/TrashIcon";
 
 interface Props {
   tasks: Task[]
@@ -11,15 +23,51 @@ export default function TaskList({ tasks }: Props) {
   let dashboard;
   if (tasks.length > 0) {
     dashboard = (
-      <Flex
-      flexDirection='column'
-      gap='14px'
-    >
-      { tasks.map((task) =>
-          <TaskDetail key={task.id} task={task}/>
-        ) 
-      }
-    </Flex>
+      <>
+        <Flex
+        flexDirection='column'
+        gap='14px'>
+        { tasks.map((task) =>
+            <TaskDetail key={task.id} task={task}/>
+          ) 
+        }
+        </Flex>
+        <Flex
+          >
+          <Menu>
+            <MenuButton
+              fontSize='14px'
+              fontWeight={"700"}
+               _hover={{bgColor: '#ECB62A', color: 'white'}}
+               _active={{bgColor: '#ECB62A', color: 'white'}} bgColor='#D9D9D9'
+               color='#333'
+               as={Button}
+               rightIcon={<ChevronDownIcon />}>
+                Opções
+            </MenuButton>
+            <MenuList bgColor='#ECB62A'>
+              <MenuItem
+                as={Flex}
+                gap='6px'
+                bgColor='#ECB62A'
+                color='white'
+                _hover={{bgColor: '#D57B5A', color: 'white', cursor: 'pointer'}}
+                fontSize='14px'
+                fontWeight={"700"}>
+                  Download<DownloadIcon /></MenuItem>
+              <MenuItem 
+                as={Flex}
+                gap='6px'
+                bgColor='#ECB62A'
+                color='white'
+                _hover={{bgColor: '#D57B5A', color: 'white', cursor: 'pointer'}}
+                fontSize='14px'
+                fontWeight={"700"}>
+                  Deletar várias<TrashIcon /></MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+      </>
     )
   } else {
     dashboard = (
