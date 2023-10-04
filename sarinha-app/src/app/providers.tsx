@@ -1,8 +1,7 @@
 'use client'
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
-import { useReducer } from 'react'
-import { TasksContext, TasksDispatchContext, tasksReducer } from './context/TaskContext'
+import { theme } from "./theme"
 
 export function Providers({ 
     children 
@@ -12,7 +11,7 @@ export function Providers({
 
   return (
     <CacheProvider>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         {children}
       </ChakraProvider>
     </CacheProvider>
