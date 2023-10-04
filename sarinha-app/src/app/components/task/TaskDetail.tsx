@@ -19,6 +19,14 @@ export default function TaskDetail({ task }: Props) {
     }); 
   }
 
+  function handleToggleTaskStatus() {
+    task.finished = !task.finished;
+    dispatch({
+      operation: 'update',
+      task: task,
+    }); 
+  }
+
   let boxShadow;
   let circleIcon;
   let trashColor;
@@ -53,7 +61,7 @@ export default function TaskDetail({ task }: Props) {
         borderColor='#D9D9D9'
         boxShadow={boxShadow}
       >
-        <Flex w='24px' h='24px' p='3.273px'>
+        <Flex as='button' w='24px' h='24px' p='3.273px' onClick={handleToggleTaskStatus}>
           { circleIcon }
         </Flex>
         <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration}>{task.description ? task.description : '(Sem descrição)'}</Box>
