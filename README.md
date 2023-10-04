@@ -35,4 +35,6 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 
 https://github.com/F1LIPE08/ohana-list/assets/63832779/a98639e1-b6e9-4bfc-a2ad-7ae8004ea649
 
+https://ohana-list-livid.vercel.app
+
 Boa sorte com o seu projeto!
