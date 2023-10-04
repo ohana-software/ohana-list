@@ -1,7 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import Image from 'next/image'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -18,7 +26,10 @@ export default function Home() {
   const [selectedTasksId, setSelectedTasksId] = useState<string[]>([])
   const [inputText, setInputText] = useState('')
 
-  const { toggleColorMode } = useColorMode()
+  const { toggleColorMode, colorMode } = useColorMode()
+  const bgHeader = useColorModeValue('gray.200', 'gray.700')
+  const bgBody = useColorModeValue('gray.100', 'gray.600')
+  const bgInput = useColorModeValue('gray.100', 'gray.500')
 
   function handleAddTask() {
     setTasks((tasks) => [
@@ -88,7 +99,7 @@ export default function Home() {
       <Flex
         as="header"
         h="20vh"
-        bgColor="gray.700"
+        bgColor={bgHeader}
         justify="center"
         align="center"
         position="relative"
@@ -110,23 +121,34 @@ export default function Home() {
           onClick={toggleColorMode}
           cursor="pointer"
         >
-          <Image
-            src="/color-mode.svg"
-            alt="Color mode toggle button"
-            height={35}
-            width={35}
-          />
+          {colorMode === 'light' ? (
+            <Image
+              src="/dark-mode.svg"
+              alt="Toggle to dark mode button"
+              height={35}
+              width={35}
+            />
+          ) : (
+            <Image
+              src="/light-mode.svg"
+              alt="Toggle to light mode button"
+              height={35}
+              width={35}
+            />
+          )}
         </Box>
       </Flex>
 
       {/* Body */}
-      <Flex align="center" bg="gray.600" h="80vh" flexDirection="column">
+      <Flex align="center" bg={bgBody} h="80vh" flexDirection="column">
         <Flex w="40vw" align="center" flexDirection="column">
           {/* Create task section */}
           <Flex align="center" h="6vh" mt="-30px" gap="8px">
             <Input
               placeholder="Adicione uma tarefa"
-              bg="gray.500"
+              bg={bgInput}
+              border={colorMode === 'light' ? '1px solid' : '0px solid'}
+              borderColor={colorMode === 'light' ? 'gray.200' : ''}
               _placeholder={{ color: 'gray.300' }}
               textColor="gray.100"
               p="1rem"

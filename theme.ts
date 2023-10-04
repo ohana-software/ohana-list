@@ -1,11 +1,9 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
 
 const config: ThemeConfig = {
-  initialColorMode: 'system',
-  useSystemColorMode: true,
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
 }
-
-export const colorModeConfig = extendTheme({ config })
 
 export const styleTheme = {
   fontSizes: {
@@ -29,3 +27,5 @@ export const styleTheme = {
     green: '#4BE03F',
   },
 }
+
+export const colorModeConfig = extendTheme({ config, styleTheme })

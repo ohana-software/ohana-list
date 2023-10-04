@@ -14,10 +14,10 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 - [x] **Contador de Tarefas Executadas:** O usuário precisa ver quantas tarefas já foram executadas.
 
 ## Features Bônus:
-- [ ] **Mudança de Tema:** Implementar a mudança de tema (escuro e claro) para a aplicação.
+- [x] **Mudança de Tema:** Implementar a mudança de tema (escuro e claro) para a aplicação.
 - [ ] **Responsividade:** A aplicação deve ser responsiva para dispositivos móveis.
 - [ ] **Download da Lista de Tarefas:** Permitir que o usuário faça o download da lista de tarefas.
-- [ ] **Utilizar a Framework Next.js:** Incorporar a framework Next.js no projeto.
+- [x] **Utilizar a Framework Next.js:** Incorporar a framework Next.js no projeto.
 
 ## Requisitos Técnicos:
 - A aplicação deve ser desenvolvida utilizando **React.js**.
