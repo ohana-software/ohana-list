@@ -4,18 +4,27 @@ import TrashIcon from "../icons/TrashIcon"
 import CircleIcon from "../icons/CircleIcon"
 import CheckCircleIcon from '../icons/CheckCircleIcon'
 import Task from "../../models/Task"
+import { useTasksDispatch } from '@/app/context/TaskContext'
 
 interface Props {
   task: Task
 }
 export default function TaskDetail({ task }: Props) {
+  const dispatch = useTasksDispatch()
+
+  function handleDeleteTask() {
+    dispatch({
+      operation: 'delete',
+      task: task
+    }); 
+  }
+
   let boxShadow;
   let circleIcon;
   let trashColor;
   let taskColor;
   let taskDecoration;
   let bgColor;
-
   if (task.finished) {
     boxShadow = undefined;
     circleIcon = (
@@ -49,12 +58,14 @@ export default function TaskDetail({ task }: Props) {
         </Flex>
         <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration}>{task.description ? task.description : '(Sem descrição)'}</Box>
         <Flex
+          as='button'
           w='24px'
           h='24px'
           p='5px 5.522px 5px 6px'
           justifyContent='center'
-          alignItems='center'>
-          <TrashIcon width="13px" height="14px" color={trashColor} />
+          alignItems='center'
+          onClick={handleDeleteTask}>
+          <TrashIcon width="13px" height="14px" color={trashColor}/>
         </Flex>
       </Flex>
   )

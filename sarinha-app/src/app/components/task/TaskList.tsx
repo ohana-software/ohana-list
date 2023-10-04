@@ -7,6 +7,7 @@ interface Props {
   tasks: Task[]
 }
 export default function TaskList({ tasks }: Props) {
+  const finishedTasks = tasks.filter(task => task.finished == true);
   let dashboard;
   if (tasks.length > 0) {
     dashboard = (
@@ -101,7 +102,7 @@ export default function TaskList({ tasks }: Props) {
           bg='#D9D9D9'
           color='#333'
         >
-          { tasks.filter(task => task.finished == true).length }
+          { finishedTasks.length > 0 ? `${tasks.length} de ${finishedTasks.length}` : 0 }
         </Box>
       </Flex>
     </Flex>

@@ -17,10 +17,13 @@ type Action = {
   operation: string;
   task: Task
 }
-export function tasksReducer(tasks: any, action: any) {
+export function tasksReducer(tasks: Task[], action: any) {
   switch (action.operation) {
     case 'add': {
       return [...tasks, action.task];
+    }
+    case 'delete': {
+      return tasks.filter(task => task.id != action.task.id);
     }
     default: {
       throw Error(`Invalid operation - ${action.operation}`);
