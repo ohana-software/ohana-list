@@ -1,5 +1,5 @@
 import { TaskProps } from '@/app/page'
-import { Button, Flex, Input, Text } from '@chakra-ui/react'
+import { Button, Flex, Input, Text, useColorMode } from '@chakra-ui/react'
 import { AiFillEdit, AiOutlineCheck } from 'react-icons/ai'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
@@ -23,6 +23,8 @@ export function Task({
   const [inputText, setInputText] = useState('')
   const [isSelected, setIsSelected] = useState(false)
   const inputRef = useRef<HTMLInputElement>(document.createElement('input'))
+
+  const { colorMode } = useColorMode()
 
   function handleEditTask() {
     editTask(task.id, inputText)
@@ -51,9 +53,10 @@ export function Task({
       as="li"
       align="center"
       gap="0.75rem"
-      bg="gray.400"
+      bg={colorMode === 'light' ? 'gray.50' : 'gray.400'}
       w="100%"
       p="1rem"
+      opacity={task.isChecked ? '60%' : '100%'}
       borderRadius="8px"
     >
       <Button bg="transparent" onClick={() => handleSetIsChecked(task.id)}>
@@ -83,7 +86,11 @@ export function Task({
           value={inputText}
         />
       ) : (
-        <Text textDecoration={task.isChecked ? 'line-through' : ''} minW="31vw">
+        <Text
+          textDecoration={task.isChecked ? 'line-through' : ''}
+          minW="31vw"
+          color={colorMode === 'light' ? 'gray.400' : 'gray.100'}
+        >
           {task.title}
         </Text>
       )}

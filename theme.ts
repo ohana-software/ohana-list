@@ -11,6 +11,7 @@ export const styleTheme = {
       300: '#808080',
       200: '#D9D9D9',
       100: '#F2F2F2',
+      50: '#FFFFFF',
     },
     danger: '#E25858',
     pink: '#BF477E',
