@@ -1,8 +1,9 @@
 "use client";
 import { Inter } from 'next/font/google'
-import { ChakraProvider,ColorModeScript} from '@chakra-ui/react'
+import {Box,ChakraProvider,ColorModeScript} from '@chakra-ui/react'
 import  { theme }  from './styles/theme'
 import { CacheProvider } from '@chakra-ui/next-js'
+import Header from './components/Header/Header'
 
 const inter = Inter({ subsets: ['latin'] }
 )
@@ -21,7 +22,8 @@ export default function RootLayout({
           <CacheProvider>
             <ChakraProvider resetCSS  theme={theme}>
               <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-              {children}
+                <Header />
+                {children}
             </ChakraProvider>
           </CacheProvider>
         </body>

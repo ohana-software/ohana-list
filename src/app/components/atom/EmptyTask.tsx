@@ -1,5 +1,4 @@
 import { Box, Image, Heading, Text } from "@chakra-ui/react";
-import clipboard from "../../../public/clipboard.svg";
 
 export  const EmptyTask = ()=> {
     return (
@@ -15,7 +14,7 @@ export  const EmptyTask = ()=> {
         backgroundColor="white"
         boxShadow="sm"
     >
-        <Image src={clipboard} alt="icone_anotacoes" boxSize="64px" />
+        <Image src={"/clipboard.svg"} alt="icone_anotacoes" boxSize="64px" />
             <Heading as="h3" size="md" mt="2">
                 Você ainda não tem tarefas cadastradas
             </Heading>

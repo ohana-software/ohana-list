@@ -18,9 +18,17 @@ export const Plus = () => {
         />
     )
 }
+export const Trash = () => {
+    return(
+        <Image 
+        src="/trash.svg" 
+        alt='Lixeira Iconer icone' 
+        />
+    )
+}
 
 export const Sun = () => {
     return(
-        <SunIcon w="35px" h="35px"/>
+        <SunIcon w="35px" h="35px" aria-label='Sol icone'/>
     )
 }

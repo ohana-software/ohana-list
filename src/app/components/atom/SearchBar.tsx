@@ -2,8 +2,10 @@ import { Flex,Input,Button, useColorModeValue } from '@chakra-ui/react'
 import { Plus } from './Icons'
 
 export const SearchBar = () => {
+
     const bgSearchBar = useColorModeValue('gray.100', 'gray.500')
     const bcSearchBar = useColorModeValue('gray.200', 'gray.700')
+
     return(
         <Flex
         gap="2"

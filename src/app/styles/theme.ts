@@ -23,9 +23,17 @@ export const theme = extendTheme({
         body:'Roboto'
     },
     colors:{
+        white:{
+            "500":"#FFFFFF",
+            "600":"#F2F2F2",
+            "700":"#E6E6E6",
+            "800":"#D9D9D9",
+            "900":"#CCCCCC",
+        },
         gray:{
             "200":"#D9D9D9",
             "500":"#262626",
+            "600":"#1A1A1A",
             "700":"#0D0D0D",
             },
         yellow:{
