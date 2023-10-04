@@ -156,7 +156,13 @@ export default function Home() {
       </Flex>
 
       {/* Body */}
-      <Flex align="center" bg={bgBody} h="80vh" flexDirection="column">
+      <Flex
+        as="main"
+        align="center"
+        bg={bgBody}
+        h="80vh"
+        flexDirection="column"
+      >
         <Flex align="center" flexDirection="column">
           {/* Create task section */}
           <Flex align="center" h="6vh" mt="-30px" gap="8px">
@@ -229,6 +235,7 @@ export default function Home() {
           </Flex>
 
           <Flex
+            as="ul"
             w={screen.availWidth < 700 ? '90vw' : '40vw'}
             mt="1.5rem"
             py={tasks.length === 0 ? '4rem' : ''}

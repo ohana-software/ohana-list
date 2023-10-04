@@ -48,6 +48,7 @@ export function Task({
 
   return (
     <Flex
+      as="li"
       align="center"
       gap="0.75rem"
       bg="gray.400"
