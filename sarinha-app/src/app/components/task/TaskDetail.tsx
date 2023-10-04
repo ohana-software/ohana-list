@@ -1,15 +1,18 @@
 'use client'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Input, useStatStyles } from '@chakra-ui/react'
 import TrashIcon from "../icons/TrashIcon"
 import CircleIcon from "../icons/CircleIcon"
 import CheckCircleIcon from '../icons/CheckCircleIcon'
 import Task from "../../models/Task"
 import { useTasksDispatch } from '@/app/context/TaskContext'
+import { useRef, useState } from 'react'
 
 interface Props {
   task: Task
 }
 export default function TaskDetail({ task }: Props) {
+  const [descriptionInput, setDescriptionInput] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useTasksDispatch()
 
   function handleDeleteTask() {
@@ -19,12 +22,27 @@ export default function TaskDetail({ task }: Props) {
     }); 
   }
 
-  function handleToggleTaskStatus() {
+  function handleUpdateStatus() {
     task.finished = !task.finished;
+    dispatch({
+      operation: 'updateStatus',
+      task: task,
+    }); 
+  }
+
+  function handleUpdateTask(e: any) {
+    task.description = e.target.value;
     dispatch({
       operation: 'update',
       task: task,
     }); 
+  }
+
+  async function toggleInput() {
+    if (descriptionInput) return setDescriptionInput(false)
+
+    await setDescriptionInput(true)
+    inputRef.current!.focus()
   }
 
   let boxShadow;
@@ -61,10 +79,13 @@ export default function TaskDetail({ task }: Props) {
         borderColor='#D9D9D9'
         boxShadow={boxShadow}
       >
-        <Flex as='button' w='24px' h='24px' p='3.273px' onClick={handleToggleTaskStatus}>
+        <Flex as='button' w='24px' h='24px' p='3.273px' onClick={handleUpdateStatus}>
           { circleIcon }
         </Flex>
-        <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration}>{task.description ? task.description : '(Sem descrição)'}</Box>
+        <Box as='p' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} textDecoration={taskDecoration} display={descriptionInput ? 'none' : 'block'} onClick={toggleInput}>{task.description ? task.description : '(Sem descrição)'}</Box>
+        <Box ref={inputRef} bg={bgColor} as='input' w='100%' fontSize='14px' fontWeight={'400'} lineHeight='19.6px' color={taskColor} value={task.description} onChange={handleUpdateTask} display={descriptionInput ? 'block' : 'none'} onBlur={toggleInput}
+        />
+
         <Flex
           as='button'
           w='24px'

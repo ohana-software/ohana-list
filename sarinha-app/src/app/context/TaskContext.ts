@@ -25,7 +25,7 @@ export function tasksReducer(tasks: Task[], action: any) {
     case 'delete': {
       return tasks.filter(task => task.id != action.task.id);
     }
-    case 'update': {
+    case 'updateStatus': {
       let updatedTasks = tasks
       updatedTasks = updatedTasks.filter(t => t.id != action.task.id)
       if (action.task.finished) {
@@ -35,6 +35,15 @@ export function tasksReducer(tasks: Task[], action: any) {
       }
 
       return updatedTasks;
+    }
+    case 'update': {
+      return tasks.map(task => {
+        if (task.id === action.task.id) {
+          return action.task;
+        } else {
+          return task;
+        }
+      });
     }
     default: {
       throw Error(`Invalid operation - ${action.operation}`);
