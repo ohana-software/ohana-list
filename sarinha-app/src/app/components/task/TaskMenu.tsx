@@ -1,12 +1,16 @@
 import { ChevronDownIcon, DownloadIcon } from "@chakra-ui/icons";
 import { Flex, Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
 import TrashIcon from "../icons/TrashIcon";
+import exportExcel from "@/app/util/exportExcel";
+import { useTasks } from "@/app/context/TaskContext";
 
 type Props = {
   display: boolean;
   toggle: () => void;
 }
 export default function TaskMenu({ display, toggle }: Props) {
+  const tasks = useTasks();
+
   return (
     <Flex display={display ? 'flex' : 'none'}>
     <Menu>
@@ -28,7 +32,8 @@ export default function TaskMenu({ display, toggle }: Props) {
           color='white'
           _hover={{bgColor: '#D57B5A', color: 'white', cursor: 'pointer'}}
           fontSize='14px'
-          fontWeight={"700"}>
+          fontWeight={"700"}
+          onClick={() => exportExcel(tasks, 'Tarefas')}>
             Download<DownloadIcon /></MenuItem>
         <MenuItem 
           as={Flex}
