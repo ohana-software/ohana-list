@@ -102,7 +102,7 @@ export default function TaskList({ tasks }: Props) {
           bg='#D9D9D9'
           color='#333'
         >
-          { finishedTasks.length > 0 ? `${tasks.length} de ${finishedTasks.length}` : 0 }
+          { finishedTasks.length > 0 ? `${finishedTasks.length} de ${tasks.length}` : 0 }
         </Box>
       </Flex>
     </Flex>
