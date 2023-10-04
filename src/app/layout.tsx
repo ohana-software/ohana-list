@@ -19,6 +19,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
+      <link rel="icon" type="image/x-icon" href="/favicon.jpeg"></link>
       <body className={inter.className}>
         <ChakraProvider theme={styleTheme}>{children}</ChakraProvider>
       </body>
