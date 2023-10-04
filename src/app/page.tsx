@@ -113,11 +113,27 @@ export default function Home() {
         >
           Ohana List
         </Text>
+        <Box position="absolute" left={15} top={25}>
+          {selectedTasksId.length !== 0 ? (
+            <Button
+              bg="danger"
+              px="5"
+              py="2px"
+              borderRadius="6px"
+              fontSize="0.9rem"
+              onClick={deleteSelectedTasks}
+            >
+              Limpar tarefas
+            </Button>
+          ) : (
+            <></>
+          )}
+        </Box>
 
         <Box
           position="absolute"
           right={30}
-          top={30}
+          top={20}
           onClick={toggleColorMode}
           cursor="pointer"
         >
@@ -152,7 +168,7 @@ export default function Home() {
               _placeholder={{ color: 'gray.300' }}
               textColor="gray.100"
               p="1rem"
-              w="34vw"
+              w={screen.availWidth < 700 ? '65vw' : '35vw'}
               _focus={{
                 transition: '0.5s',
                 border: '1px solid',
@@ -198,20 +214,6 @@ export default function Home() {
               </Box>
             </Flex>
 
-            {selectedTasksId.length !== 0 ? (
-              <Button
-                bg="danger"
-                px="10px"
-                py="2px"
-                borderRadius="6px"
-                onClick={deleteSelectedTasks}
-              >
-                Limpar tarefas
-              </Button>
-            ) : (
-              <></>
-            )}
-
             <Flex gap="8px" align="center">
               <Text color="pink">Concluídas</Text>
               <Box
@@ -227,7 +229,7 @@ export default function Home() {
           </Flex>
 
           <Flex
-            w="40vw"
+            w={screen.availWidth < 700 ? '90vw' : '40vw'}
             mt="1.5rem"
             py={tasks.length === 0 ? '4rem' : ''}
             px={tasks.length === 0 ? '1.5rem' : ''}
@@ -247,10 +249,10 @@ export default function Home() {
                   alt="Clipboard icon"
                 />
                 <Box>
-                  <Text color="gray.300" fontWeight="bold">
+                  <Text color="gray.300" fontWeight="bold" textAlign="center">
                     Você ainda não tem tarefas cadastradas
                   </Text>
-                  <Text color="gray.300">
+                  <Text color="gray.300" textAlign="center">
                     Crie tarefas e organize seus itens a fazer
                   </Text>
                 </Box>
