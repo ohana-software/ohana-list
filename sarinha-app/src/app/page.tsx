@@ -15,9 +15,14 @@ export default function Home() {
     setNewTask(e.target.value);
   }
 
+  const lastId = () => {
+    if (tasks.length < 1) return 0
+    return tasks.reduce((t1, t2) => t1.id > t2.id ? t1 : t2).id + 1
+  }
+
   function handleAddTask() {
     const task: Task = {
-      id: tasks.length + 1,
+      id: lastId(),
       description: newTask,
       finished: false
     }
