@@ -9,6 +9,7 @@ interface TaskComponentProps {
   handleDeleteTask: (id: string) => void
   handleSetIsChecked: (id: string) => void
   editTask: (id: string, title: string) => void
+  selectTask: (id: string) => void
 }
 
 export function Task({
@@ -16,9 +17,11 @@ export function Task({
   handleDeleteTask,
   handleSetIsChecked,
   editTask,
+  selectTask,
 }: TaskComponentProps) {
   const [isOnEditMode, setIsOnEditMode] = useState(false)
   const [inputText, setInputText] = useState('')
+  const [isSelected, setIsSelected] = useState(false)
   const inputRef = useRef<HTMLInputElement>(document.createElement('input'))
 
   function handleEditTask() {
@@ -30,6 +33,11 @@ export function Task({
   function handleEditMode() {
     setIsOnEditMode((state) => !state)
     setInputText(task.title)
+  }
+
+  function handleSelectTask() {
+    setIsSelected((state) => !state)
+    selectTask(task.id)
   }
 
   useEffect(() => {
@@ -66,7 +74,7 @@ export function Task({
       </Button>
       {isOnEditMode ? (
         <Input
-          minW="33vw"
+          minW="31vw"
           bg="gray.400"
           required
           ref={inputRef}
@@ -74,7 +82,7 @@ export function Task({
           value={inputText}
         />
       ) : (
-        <Text textDecoration={task.isChecked ? 'line-through' : ''} minW="33vw">
+        <Text textDecoration={task.isChecked ? 'line-through' : ''} minW="31vw">
           {task.title}
         </Text>
       )}
@@ -88,6 +96,25 @@ export function Task({
       ) : (
         <Button color="yellow_button" onClick={handleEditMode}>
           <AiFillEdit />
+        </Button>
+      )}
+      {isSelected ? (
+        <Button onClick={handleSelectTask}>
+          <Image
+            src="/checked.svg"
+            alt="delete task icon"
+            height={23}
+            width={23}
+          />
+        </Button>
+      ) : (
+        <Button onClick={handleSelectTask}>
+          <Image
+            src="/uncheck.svg"
+            alt="delete task icon"
+            height={23}
+            width={23}
+          />
         </Button>
       )}
     </Flex>

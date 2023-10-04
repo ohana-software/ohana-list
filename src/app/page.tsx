@@ -15,7 +15,9 @@ export interface TaskProps {
 
 export default function Home() {
   const [tasks, setTasks] = useState<TaskProps[]>([])
+  const [selectedTasksId, setSelectedTasksId] = useState<string[]>([])
   const [inputText, setInputText] = useState('')
+
   const { toggleColorMode } = useColorMode()
 
   function handleAddTask() {
@@ -57,6 +59,27 @@ export default function Home() {
     })
 
     setTasks(newTasksList)
+  }
+
+  function selectTask(id: string) {
+    if (selectedTasksId.includes(id)) {
+      const newSelectedTasksList = selectedTasksId.filter(
+        (selectedTaskId) => selectedTaskId !== id,
+      )
+
+      setSelectedTasksId(newSelectedTasksList)
+    } else {
+      setSelectedTasksId((state) => [...state, id])
+    }
+  }
+
+  function deleteSelectedTasks() {
+    const newTasksList = tasks.filter(
+      (task) => !selectedTasksId.includes(task.id),
+    )
+
+    setTasks(newTasksList)
+    setSelectedTasksId([])
   }
 
   return (
@@ -152,6 +175,21 @@ export default function Home() {
                 {tasks.length}
               </Box>
             </Flex>
+
+            {selectedTasksId.length !== 0 ? (
+              <Button
+                bg="danger"
+                px="10px"
+                py="2px"
+                borderRadius="6px"
+                onClick={deleteSelectedTasks}
+              >
+                Limpar tarefas
+              </Button>
+            ) : (
+              <></>
+            )}
+
             <Flex gap="8px" align="center">
               <Text color="pink">Concluídas</Text>
               <Box
@@ -203,6 +241,7 @@ export default function Home() {
                     handleDeleteTask={handleDeleteTask}
                     handleSetIsChecked={handleSetIsChecked}
                     editTask={editTask}
+                    selectTask={selectTask}
                     key={task.id}
                   />
                 ))}
