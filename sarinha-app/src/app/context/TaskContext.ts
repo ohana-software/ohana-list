@@ -16,6 +16,7 @@ export function useTasksDispatch() {
 type Action = {
   operation: string;
   task: Task;
+  ids: number[];
 }
 export function tasksReducer(tasks: Task[], action: any) {
   switch (action.operation) {
@@ -24,6 +25,9 @@ export function tasksReducer(tasks: Task[], action: any) {
     }
     case 'delete': {
       return tasks.filter(task => task.id != action.task.id);
+    }
+    case 'deleteMultiple': {
+      return tasks.filter(task => !action.ids.includes(task.id));
     }
     case 'updateStatus': {
       let updatedTasks = tasks

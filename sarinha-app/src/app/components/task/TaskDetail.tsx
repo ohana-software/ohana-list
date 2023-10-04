@@ -9,8 +9,9 @@ import { useRef, useState } from 'react'
 
 interface Props {
   task: Task
+  editMode: boolean
 }
-export default function TaskDetail({ task }: Props) {
+export default function TaskDetail({ task, editMode }: Props) {
   const [descriptionInput, setDescriptionInput] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useTasksDispatch()
@@ -78,6 +79,8 @@ export default function TaskDetail({ task }: Props) {
         border='1px'
         borderColor='#D9D9D9'
         boxShadow={boxShadow}
+        w='100%'
+        pointerEvents={editMode ? undefined : 'none'}
       >
         <Flex as='button' w='24px' h='24px' p='3.273px' onClick={handleUpdateStatus}>
           { circleIcon }

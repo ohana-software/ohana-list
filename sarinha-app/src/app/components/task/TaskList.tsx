@@ -1,25 +1,58 @@
-import { Box, Button, Center, Flex } from "@chakra-ui/react";
+import { Box, Center, Flex } from "@chakra-ui/react";
 import TaskDetail from "./TaskDetail";
 import Task from "../../models/Task"
 import ClipboardIcon from "../icons/ClipboardIcon";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from '@chakra-ui/react'
-import { ChevronDownIcon, DownloadIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import TrashIcon from "../icons/TrashIcon";
+import { useRef, useState } from "react";
+import CircleIcon from "../icons/CircleIcon";
+import TaskMenu from "./TaskMenu";
+import { useTasksDispatch } from "@/app/context/TaskContext";
 
 interface Props {
   tasks: Task[]
 }
 export default function TaskList({ tasks }: Props) {
+  const [options, setOptions] = useState(false)
+  const [editMode, setEditMode] = useState(true)
+  const [selectedTasks, setSelectedTasks] = useState<number[]>([])
+  const optionsRef = useRef<HTMLInputElement>(null);
   const finishedTasks = tasks.filter(task => task.finished == true);
+  const dispatch = useTasksDispatch()
+
+  function toggleDeleteMultiple() {
+    if (options) {
+      setOptions(false)
+      setEditMode(true)
+      setSelectedTasks([])
+      return;
+    }
+
+    setOptions(true)
+    setEditMode(false)
+  }
+
+  async function handleDeleteTasks() {
+    await dispatch({
+      operation: 'deleteMultiple',
+      ids: selectedTasks
+    }); 
+
+    toggleDeleteMultiple()
+  }
+
+  function handleSelectTask(id: number) {
+    setSelectedTasks([...selectedTasks, id])
+  }
+
+  function handleUnselectTask(id: number) {
+    setSelectedTasks(selectedTasks.filter(taskId => taskId != id))
+  }
+
+  const isTaskSelected = (id: number) => {
+    return selectedTasks.includes(id);
+  }
+
   let dashboard;
   if (tasks.length > 0) {
     dashboard = (
@@ -28,45 +61,24 @@ export default function TaskList({ tasks }: Props) {
         flexDirection='column'
         gap='14px'>
         { tasks.map((task) =>
-            <TaskDetail key={task.id} task={task}/>
+          <Flex key={task.id} gap='5px' alignItems='center'>
+            <CircleIcon cursor='pointer' as='button' display={!isTaskSelected(task.id) && !editMode ? 'block' : 'none'} onClick={() => handleSelectTask(task.id)} color='#333' width='20px' height='20px' />
+            <CheckCircleIcon cursor='pointer' display={isTaskSelected(task.id) && !editMode ? 'block' : 'none'} onClick={() => handleUnselectTask(task.id)}  color='#333' width='20px' height='20px' />
+            <TaskDetail task={task} editMode={editMode}/>
+          </Flex>
           ) 
         }
+        <Flex display={options ? 'flex' : 'none'} ref={optionsRef} alignItems='center' color='#333' fontSize='14px' justifyContent='space-between'>
+          <Box fontWeight={"700"}>{selectedTasks.length} de {tasks.length} selecionadas</Box>
+          <Flex alignItems='center' gap='10px'>
+            <Box as='button' onClick={toggleDeleteMultiple} color='#808080'>
+              <ArrowBackIcon />Voltar às opções</Box>
+          <Flex onClick={handleDeleteTasks} as='button' borderRadius='8px' alignItems='center' gap='5px' _hover={{ opacity: '74%'}} p='10px'fontWeight={"700"} fontSize='14px' bg='#E25858' color='white'>
+            Deletar<TrashIcon /></Flex>
+          </Flex>
         </Flex>
-        <Flex
-          >
-          <Menu>
-            <MenuButton
-              fontSize='14px'
-              fontWeight={"700"}
-               _hover={{bgColor: '#ECB62A', color: 'white'}}
-               _active={{bgColor: '#ECB62A', color: 'white'}} bgColor='#D9D9D9'
-               color='#333'
-               as={Button}
-               rightIcon={<ChevronDownIcon />}>
-                Opções
-            </MenuButton>
-            <MenuList bgColor='#ECB62A'>
-              <MenuItem
-                as={Flex}
-                gap='6px'
-                bgColor='#ECB62A'
-                color='white'
-                _hover={{bgColor: '#D57B5A', color: 'white', cursor: 'pointer'}}
-                fontSize='14px'
-                fontWeight={"700"}>
-                  Download<DownloadIcon /></MenuItem>
-              <MenuItem 
-                as={Flex}
-                gap='6px'
-                bgColor='#ECB62A'
-                color='white'
-                _hover={{bgColor: '#D57B5A', color: 'white', cursor: 'pointer'}}
-                fontSize='14px'
-                fontWeight={"700"}>
-                  Deletar várias<TrashIcon /></MenuItem>
-            </MenuList>
-          </Menu>
         </Flex>
+        <TaskMenu display={!options} toggle={toggleDeleteMultiple} />
       </>
     )
   } else {
