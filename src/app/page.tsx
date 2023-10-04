@@ -141,7 +141,7 @@ export default function Home() {
 
       {/* Body */}
       <Flex align="center" bg={bgBody} h="80vh" flexDirection="column">
-        <Flex w="40vw" align="center" flexDirection="column">
+        <Flex align="center" flexDirection="column">
           {/* Create task section */}
           <Flex align="center" h="6vh" mt="-30px" gap="8px">
             <Input
