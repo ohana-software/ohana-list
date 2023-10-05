@@ -1,42 +1,15 @@
 "use client";
-import {
-  Box,
-  Center,
-  Flex,
-  Grid,
-  GridItem,
-  SimpleGrid,
-  Spacer,
-} from "@chakra-ui/react";
+import { Center, Flex, Grid, GridItem } from "@chakra-ui/react";
 import DarkModeIcon from "./icons/DarkModeIcon";
-
-/*export default function Header() {
-  return (
-    <Center
-      bg="base.gray.200"
-      h="200px"
-      fontSize="lg"
-      fontWeight={"900"}
-      letterSpacing="-2.6px"
-      textAlign="center"
-    >
-      <h1 className="title">Ohana List</h1>
-    </Center>
-  );
-}*/
 
 export default function Header() {
   return (
-    <Grid
-      bg="base.gray.200"
-      h="200px"
-      templateColumns={{ base: "repeat(4, 1fr)" }}
-    >
-      <GridItem display={{ base: "block" }} w="100%" />
+    <Grid bg="base.gray.200" h="200px" templateColumns="repeat(4, 1fr)">
+      <GridItem display="block" w="100%" />
       <GridItem w="100%" colSpan={2}>
         <Center
           fontSize="lg"
-          fontWeight={"900"}
+          fontWeight="900"
           letterSpacing="-2.6px"
           textAlign="center"
           h="100%"
