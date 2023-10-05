@@ -35,16 +35,6 @@ const semanticTokens = {
       _light: "#F5F5F5",
       _dark: "base.gray.600",
     },
-    addTask: {
-      bg: {
-        _light: "base.gray.100",
-        _dark: "base.gray.500",
-      },
-      border: {
-        _light: "base.gray.200",
-        _dark: "base.gray.700",
-      },
-    },
     taskLength: {
       bg: {
         _light: "base.gray.200",
@@ -82,11 +72,6 @@ const semanticTokens = {
       },
     },
   },
-};
-
-const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: true,
 };
 
 const fontSizes = {
@@ -138,6 +123,45 @@ const Button = defineStyleConfig({
     variant: "yellow",
   },
 });
+
+const Input = defineStyleConfig({
+  baseStyle: {
+    w: "100%",
+  },
+  sizes: {
+    sm: {},
+    md: {},
+  },
+  variants: {
+    default: {
+      bg: {
+        _light: "base.gray.100",
+        _dark: "base.gray.500",
+      },
+      border: {
+        _light: "base.gray.200",
+        _dark: "base.gray.700",
+      },
+    },
+    task: {
+      unfinished: {},
+      finished: {},
+    },
+  },
+  defaultProps: {
+    size: "md",
+  },
+});
+
+const Flex = defineStyleConfig({
+  variants: {},
+  defaultProps: {},
+});
+
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: true,
+};
 
 export const theme = extendTheme({
   colors,

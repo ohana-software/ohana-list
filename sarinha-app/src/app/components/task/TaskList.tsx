@@ -10,10 +10,9 @@ import TaskMenu from "./TaskMenu";
 import { useTasksDispatch } from "@/app/context/TaskContext";
 
 interface Props {
-  display: string;
   tasks: Task[];
 }
-export default function TaskList({ display, tasks }: Props) {
+export default function TaskList({ tasks }: Props) {
   const [options, setOptions] = useState(false);
   const [editMode, setEditMode] = useState(true);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
@@ -155,16 +154,15 @@ export default function TaskList({ display, tasks }: Props) {
       mt="64px"
       gap="24px"
       flexDirection="column"
-      display={display}
     >
       <Flex
         justifyContent={{ base: "center", sm: "space-between" }}
         alignItems={{ base: "center", sm: "space-between" }}
-        gap={{ base: "8px", sm: undefined }}
+        gap={{ base: "10px", sm: undefined }}
         width="100%"
         fontSize="14px"
         fontWeight={"700"}
-        flexDirection="row"
+        flexDirection={{ base: "column", sm: "row" }}
       >
         <Flex color="#D57B5A" gap="8px">
           Tarefas criadas

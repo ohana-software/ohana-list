@@ -1,5 +1,6 @@
 "use client";
 import { Center, Flex, Grid, GridItem, useColorMode } from "@chakra-ui/react";
+
 import DarkModeIcon from "./icons/DarkModeIcon";
 import LightModeIcon from "./icons/LightModeIcon";
 
@@ -39,6 +40,7 @@ export default function Header() {
             w={{ base: "20px", sm: "35px" }}
             h={{ base: "20px", sm: "35px" }}
             cursor="pointer"
+            color="headerIcon"
             onClick={toggleColorMode}
             display={colorMode === "dark" ? "block" : "none"}
           />

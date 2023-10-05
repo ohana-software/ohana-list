@@ -1,18 +1,17 @@
 "use client";
-import { Center, Flex, Box } from "@chakra-ui/react";
-import AddCircleIcon from "./components/icons/AddCircleIcon";
-import TaskList from "./components/task/TaskList";
-import Task from "./models/Task";
+import { Box } from "@chakra-ui/react";
+
 import { useEffect, useReducer, useState } from "react";
 import {
   tasksReducer,
   TasksDispatchContext,
   TasksContext,
 } from "./context/TaskContext";
-import { Spinner } from "@chakra-ui/react";
+
 import Header from "./components/Header";
 import Loader from "./components/Loader";
 import AddTask from "./components/task/AddTask";
+import TaskList from "./components/task/TaskList";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -23,17 +22,18 @@ export default function Home() {
   }, [tasks]);
 
   return (
-    <Box as="main" bg="containerBg" className="container">
+    <Box as="main" bg="containerBg" minH="100vh" minW="225px" pb="100px">
       <Header />
 
-      <Loader loading={loading} />
-
-      <TasksContext.Provider value={tasks}>
-        <TasksDispatchContext.Provider value={dispatch}>
-          <AddTask display={!loading ? "flex" : "none"} />
-          <TaskList display={!loading ? "flex" : "none"} tasks={tasks} />
-        </TasksDispatchContext.Provider>
-      </TasksContext.Provider>
+      {loading && <Loader />}
+      {!loading && (
+        <TasksContext.Provider value={tasks}>
+          <TasksDispatchContext.Provider value={dispatch}>
+            <AddTask />
+            <TaskList tasks={tasks} />
+          </TasksDispatchContext.Provider>
+        </TasksContext.Provider>
+      )}
     </Box>
   );
 }

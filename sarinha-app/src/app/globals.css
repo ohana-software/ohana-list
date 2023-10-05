@@ -9,9 +9,3 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.container {
-  min-height: 100vh;
-  min-width: 225px;
-  padding-bottom: 100px;
-}
