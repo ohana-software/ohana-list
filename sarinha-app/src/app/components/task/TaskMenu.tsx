@@ -19,27 +19,22 @@ export default function TaskMenu({ display, toggle }: Props) {
   const tasks = useTasks();
 
   return (
-    <Flex alignSelf="center" display={display ? "flex" : "none"}>
+    <Flex display={display ? "flex" : "none"}>
       <Menu>
-        <MenuButton
-          fontSize="14px"
-          fontWeight={"700"}
-          _hover={{ bgColor: "#ECB62A", color: "white" }}
-          _active={{ bgColor: "#ECB62A", color: "white" }}
-          bgColor="#D9D9D9"
-          color="#333"
-          as={Button}
-          rightIcon={<ChevronDownIcon />}
-        >
-          Opções
+        <MenuButton as={Button}>
+          Opções <ChevronDownIcon w="20px" h="20px" />
         </MenuButton>
         <MenuList bgColor="#ECB62A">
           <MenuItem
             as={Flex}
             gap="6px"
-            bgColor="#ECB62A"
+            bgColor="product.yellow-button"
             color="white"
-            _hover={{ bgColor: "#D57B5A", color: "white", cursor: "pointer" }}
+            _hover={{
+              bgColor: "product.light-orange",
+              color: "white",
+              cursor: "pointer",
+            }}
             fontSize="14px"
             fontWeight={"700"}
             onClick={() => exportExcel(tasks, "Tarefas")}
@@ -51,9 +46,13 @@ export default function TaskMenu({ display, toggle }: Props) {
             as={Flex}
             onClick={toggle}
             gap="6px"
-            bgColor="#ECB62A"
+            bgColor="product.yellow-button"
             color="white"
-            _hover={{ bgColor: "#D57B5A", color: "white", cursor: "pointer" }}
+            _hover={{
+              bgColor: "product.light-orange",
+              color: "white",
+              cursor: "pointer",
+            }}
             fontSize="14px"
             fontWeight={"700"}
           >

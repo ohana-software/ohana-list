@@ -1,10 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
-
-const breakpoints = {
-  base: "0px",
-  sm: "250px",
-  md: "432px",
-};
+import { defineStyleConfig, extendTheme } from "@chakra-ui/react";
 
 const colors = {
   product: {
@@ -70,6 +64,10 @@ const semanticTokens = {
         _light: "base.gray.200",
         _dark: "base.gray.400",
       },
+      color: {
+        _light: "base.gray.400",
+        _dark: "base.gray.100",
+      },
       lineHeight: "19.6px",
       finished: {
         bg: {
@@ -104,9 +102,42 @@ const fontWeights = {
   black: 900,
 };
 
-const lineHeights = {
-  base: "140%",
-};
+const Button = defineStyleConfig({
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    color: "base.gray.100",
+    borderRadius: "8px",
+    fontSize: "sm",
+    fontWeight: "bold",
+    transition: "0.2s",
+    p: "16px",
+  },
+  sizes: {
+    md: {
+      fontSize: "sm",
+    },
+  },
+  variants: {
+    yellow: {
+      bg: "product.yellow-button",
+      _hover: {
+        background: "product.light-orange",
+      },
+    },
+    red: {
+      bg: "base.danger",
+      _hover: {
+        background: "product.light-orange",
+      },
+    },
+  },
+  defaultProps: {
+    size: "md",
+    variant: "yellow",
+  },
+});
 
 export const theme = extendTheme({
   colors,
@@ -114,4 +145,7 @@ export const theme = extendTheme({
   fontWeights,
   semanticTokens,
   config,
+  components: {
+    Button,
+  },
 });

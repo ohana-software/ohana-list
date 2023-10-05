@@ -1,6 +1,6 @@
 import { useTasks, useTasksDispatch } from "@/app/context/TaskContext";
 import Task from "@/app/models/Task";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { useState, useReducer, useEffect } from "react";
 import AddCircleIcon from "../icons/AddCircleIcon";
 
@@ -60,24 +60,12 @@ export default function AddTask({ display }: Props) {
         value={newTask}
         onChange={handleNewTask}
       />
-      <Flex
-        as="button"
-        alignItems="center"
-        gap="8px"
-        color="base.gray.100"
-        bg="product.yellow-button"
-        p="16px"
-        borderRadius="8px"
-        fontSize="sm"
-        fontWeight="bold"
-        transition="0.2s"
-        _hover={{
-          background: "product.light-orange",
-        }}
-        onClick={handleAddTask}
-      >
-        Criar
-        <AddCircleIcon color="#F2F2F2" />
+
+      <Flex>
+        <Button h="100%" onClick={handleAddTask}>
+          Criar
+          <AddCircleIcon w="16px" h="16px" />
+        </Button>
       </Flex>
     </Flex>
   );

@@ -1,4 +1,4 @@
-import { Box, Center, Flex } from "@chakra-ui/react";
+import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import TaskDetail from "./TaskDetail";
 import Task from "../../models/Task";
 import ClipboardIcon from "../icons/ClipboardIcon";
@@ -89,7 +89,7 @@ export default function TaskList({ display, tasks }: Props) {
             display={options ? "flex" : "none"}
             ref={optionsRef}
             alignItems="center"
-            color="#333"
+            color="task.color"
             fontSize="14px"
             gap="8px"
             justifyContent="space-between"
@@ -97,21 +97,11 @@ export default function TaskList({ display, tasks }: Props) {
             <Box fontWeight={"700"}>
               {selectedTasks.length} de {tasks.length} selecionadas
             </Box>
-            <Flex
-              onClick={handleDeleteTasks}
-              as="button"
-              borderRadius="8px"
-              alignItems="center"
-              gap="5px"
-              _hover={{ opacity: "74%" }}
-              p="10px"
-              fontWeight={"700"}
-              fontSize="14px"
-              bg="#E25858"
-              color="white"
-            >
-              Deletar
-              <TrashIcon />
+            <Flex>
+              <Button variant="red" onClick={handleDeleteTasks}>
+                Deletar
+                <TrashIcon w="16px" h="16px" />
+              </Button>
             </Flex>
           </Flex>
           <Box
@@ -168,8 +158,8 @@ export default function TaskList({ display, tasks }: Props) {
       display={display}
     >
       <Flex
-        justifyContent={{ base: "center", sm: "space-between" }}
-        alignItems={{ base: "center", sm: "space-between" }}
+        justifyContent={{ base: "start", sm: "space-between" }}
+        alignItems={{ base: "start", sm: "space-between" }}
         gap={{ base: "8px", sm: undefined }}
         width="100%"
         fontSize="14px"
