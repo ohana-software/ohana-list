@@ -19,9 +19,10 @@ const config = {
 
 export const theme = extendTheme({
     fonts: {
-        heading: 'Roboto',
-        body:'Roboto'
+        heading: 'Inter,Roboto',
+        body:'Inter,Roboto'
     },
+
     colors:{
         white:{
             "500":"#FFFFFF",
@@ -32,6 +33,8 @@ export const theme = extendTheme({
         },
         gray:{
             "200":"#D9D9D9",
+            "300":"#808080",
+            "400":"#333333",
             "500":"#262626",
             "600":"#1A1A1A",
             "700":"#0D0D0D",
@@ -39,10 +42,18 @@ export const theme = extendTheme({
         yellow:{
             "500":"#ECB62A",
             },
+        orange:{
+                "Light":"#D57B5A",
+            },
+        pink:{
+            "25":"#BF477E",
+        },
         },
     breakpoints,
+
     boxSizing:{
         boxSizing:"border-box"
     },
+
     config
 })

@@ -8,7 +8,7 @@ export default function Header() {
     return(
         <Box as="header"
         w="100vw"
-        h="18.183vh"
+        h="20vh"
         bg={bgHeader}
         textAlign="center"
         verticalAlign="middle"
