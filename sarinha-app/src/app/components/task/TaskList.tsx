@@ -60,7 +60,7 @@ export default function TaskList({ display, tasks }: Props) {
       <>
         <Flex flexDirection="column" gap="14px">
           {tasks.map((task) => (
-            <Flex key={task.id} gap="5px" alignItems="center">
+            <Flex key={task.id} gap="8px" alignItems="center">
               <CircleIcon
                 cursor="pointer"
                 as="button"
@@ -68,7 +68,7 @@ export default function TaskList({ display, tasks }: Props) {
                   !isTaskSelected(task.id) && !editMode ? "block" : "none"
                 }
                 onClick={() => handleSelectTask(task.id)}
-                color="#333"
+                color="task.color"
                 width="20px"
                 height="20px"
               />
@@ -78,7 +78,7 @@ export default function TaskList({ display, tasks }: Props) {
                   isTaskSelected(task.id) && !editMode ? "block" : "none"
                 }
                 onClick={() => handleUnselectTask(task.id)}
-                color="#333"
+                color="task.color"
                 width="20px"
                 height="20px"
               />
@@ -158,25 +158,27 @@ export default function TaskList({ display, tasks }: Props) {
       display={display}
     >
       <Flex
-        justifyContent={{ base: "start", sm: "space-between" }}
-        alignItems={{ base: "start", sm: "space-between" }}
+        justifyContent={{ base: "center", sm: "space-between" }}
+        alignItems={{ base: "center", sm: "space-between" }}
         gap={{ base: "8px", sm: undefined }}
         width="100%"
         fontSize="14px"
         fontWeight={"700"}
-        flexDirection={{ base: "column", sm: "row" }}
+        flexDirection="row"
       >
         <Flex color="#D57B5A" gap="8px">
           Tarefas criadas
-          <Box
-            p="2px 8px"
-            fontSize="12px"
-            borderRadius="999px"
-            bg="taskLength.bg"
-            color="taskLength.color"
-          >
-            {tasks.length}
-          </Box>
+          <Flex alignItems="center">
+            <Box
+              p="2px 8px"
+              fontSize="12px"
+              borderRadius="999px"
+              bg="taskLength.bg"
+              color="taskLength.color"
+            >
+              {tasks.length}
+            </Box>
+          </Flex>
         </Flex>
         <Flex color="#BF477E" gap="8px">
           Concluídas
