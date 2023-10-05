@@ -9,7 +9,6 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import DarkModeIcon from "./icons/DarkModeIcon";
-import MobileMenu from "./MobileMenu";
 
 /*export default function Header() {
   return (
@@ -31,12 +30,10 @@ export default function Header() {
     <Grid
       bg="base.gray.200"
       h="200px"
-      gridTemplateRows={{ base: "auto 1fr", sm: "auto" }}
-      templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(4, 1fr)" }}
+      templateColumns={{ base: "repeat(4, 1fr)" }}
     >
-      <MobileMenu />
-      <GridItem display={{ base: "none", sm: "block" }} w="100%" />
-      <GridItem w="100%" minW="178px" colSpan={2}>
+      <GridItem display={{ base: "block" }} w="100%" />
+      <GridItem w="100%" colSpan={2}>
         <Center
           fontSize="lg"
           fontWeight={"900"}
@@ -47,15 +44,16 @@ export default function Header() {
           <h1 className="title">Ohana List</h1>
         </Center>
       </GridItem>
-      <GridItem w="100%" display={{ base: "none", sm: "block" }}>
+      <GridItem w="100%">
         <Flex
           justifyContent="end"
-          pt={{ base: "10px", md: "36px" }}
-          pr={{ base: "15px", md: "41px" }}
+          pt={{ base: "20px", sm: "36px" }}
+          pr={{ base: "25px", sm: "41px" }}
+          w="100%"
         >
           <DarkModeIcon
-            w={{ base: "20px", md: "35px" }}
-            h={{ base: "20px", md: "35px" }}
+            w={{ base: "20px", sm: "35px" }}
+            h={{ base: "20px", sm: "35px" }}
           />
         </Flex>
       </GridItem>
