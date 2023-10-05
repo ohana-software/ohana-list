@@ -80,13 +80,14 @@ const semanticTokens = {
           _light: "base.gray.200",
           _dark: "base.gray.500",
         },
+        color: "base.gray.300",
       },
     },
   },
 };
 
 const config = {
-  initialColorMode: "system",
+  initialColorMode: "dark",
   useSystemColorMode: true,
 };
 
