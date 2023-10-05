@@ -47,14 +47,15 @@ export default function AddTask({ display }: Props) {
       <Box
         as="input"
         bg="addTask.bg"
-        _placeholder={{ color: "#808080" }}
+        _placeholder={{ color: "base.gray.300" }}
         placeholder="Adicione uma nova tarefa"
         fontSize="16"
-        fontWeight={"400"}
+        fontWeight="regular"
         width="100%"
         borderRadius="8px"
         border="1px"
-        borderColor="#D9D9D9"
+        borderColor="addTask.border"
+        _focus={{ outline: "none", borderColor: "product.dark-pink" }}
         p="16px"
         value={newTask}
         onChange={handleNewTask}
@@ -63,16 +64,15 @@ export default function AddTask({ display }: Props) {
         as="button"
         alignItems="center"
         gap="8px"
-        color="#F2F2F2"
-        bg="#ECB62A"
+        color="base.gray.100"
+        bg="product.yellow-button"
         p="16px"
         borderRadius="8px"
-        fontSize="14"
-        fontWeight={"700"}
-        transition="0.3s"
+        fontSize="sm"
+        fontWeight="bold"
+        transition="0.2s"
         _hover={{
-          background: "#D16F61",
-          color: "#F5F5F5",
+          background: "product.light-orange",
         }}
         onClick={handleAddTask}
       >

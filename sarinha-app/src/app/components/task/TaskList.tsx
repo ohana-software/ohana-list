@@ -182,8 +182,8 @@ export default function TaskList({ display, tasks }: Props) {
             p="2px 8px"
             fontSize="12px"
             borderRadius="999px"
-            bg="#D9D9D9"
-            color="#333"
+            bg="taskLength.bg"
+            color="taskLength.color"
           >
             {tasks.length}
           </Box>
@@ -194,8 +194,8 @@ export default function TaskList({ display, tasks }: Props) {
             p="2px 8px"
             fontSize="12px"
             borderRadius="999px"
-            bg="#D9D9D9"
-            color="#333"
+            bg="taskLength.bg"
+            color="taskLength.color"
           >
             {finishedTasks.length > 0
               ? `${finishedTasks.length} de ${tasks.length}`

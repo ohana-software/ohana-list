@@ -58,16 +58,16 @@ export default function TaskDetail({ task, editMode }: Props) {
       <CheckCircleIcon w="18px" h="18px" color="#B22D95" checkcolor="#D9D9D9" />
     );
     trashColor = "#808080";
-    taskColor = "#808080";
+    taskColor = "task.finished.color";
     taskDecoration = "line-through";
-    bgColor = "#EDEDED";
+    bgColor = "task.finished.bg";
   } else {
     boxShadow = "0px 2px 8px 0px rgba(0, 0, 0, 0.06)";
     circleIcon = <CircleIcon w="18px" h="18px" color="#D57B5A" />;
     trashColor = "#E25858";
-    taskColor = "#333";
+    taskColor = "task.color";
     taskDecoration = undefined;
-    bgColor = "#FFF";
+    bgColor = "task.bg";
   }
 
   return (
@@ -77,7 +77,7 @@ export default function TaskDetail({ task, editMode }: Props) {
       bg={bgColor}
       borderRadius="8px"
       border="1px"
-      borderColor="#D9D9D9"
+      borderColor="task.border"
       boxShadow={boxShadow}
       w="100%"
       pointerEvents={editMode ? undefined : "none"}
@@ -96,7 +96,7 @@ export default function TaskDetail({ task, editMode }: Props) {
         w="100%"
         fontSize="14px"
         fontWeight={"400"}
-        lineHeight="19.6px"
+        lineHeight="task.lineHeight"
         color={taskColor}
         textDecoration={taskDecoration}
         display={descriptionInput ? "none" : "block"}

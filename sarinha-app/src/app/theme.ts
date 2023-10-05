@@ -46,6 +46,41 @@ const semanticTokens = {
         _light: "base.gray.100",
         _dark: "base.gray.500",
       },
+      border: {
+        _light: "base.gray.200",
+        _dark: "base.gray.700",
+      },
+    },
+    taskLength: {
+      bg: {
+        _light: "base.gray.200",
+        _dark: "base.gray.400",
+      },
+      color: {
+        _light: "base.gray.400",
+        _dark: "base.gray.200",
+      },
+    },
+    task: {
+      bg: {
+        _light: "#FFF",
+        _dark: "base.gray.500",
+      },
+      border: {
+        _light: "base.gray.200",
+        _dark: "base.gray.400",
+      },
+      lineHeight: "19.6px",
+      finished: {
+        bg: {
+          _light: "#EDEDED",
+          _dark: "base.gray.500",
+        },
+        border: {
+          _light: "base.gray.200",
+          _dark: "base.gray.500",
+        },
+      },
     },
   },
 };
