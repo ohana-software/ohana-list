@@ -1,27 +1,47 @@
 "use client";
 import {useColorMode,UnorderedList,Textarea,ListItem,IconButton  } from '@chakra-ui/react'
-import { Trash } from './Icons';
-import { useContext } from 'react'
+import { Edit, Trash } from './Icons';
+import { useContext, useState } from 'react'
 import { CountContext } from '../Contexts/CrudContex'
 
 
 
 const LisTask = () => {
-    const {task,textInput,setTasks} =useContext(CountContext) 
+    const {task,setTasks} =useContext(CountContext) 
+    const { colorMode } = useColorMode()
+    const [edit,setEdits] = useState(true)
+
     function Delete(index:number){
         setTasks(task.filter((list) => list.id !== index))
     }
+
+    function EditTask(){
+        if(edit == true){
+            setEdits(false)
+        }
+        else{
+            setEdits(true)
+        }
+    }
+    
 
     return (
         <UnorderedList>
             {task.map((list) => (
                 <ListItem key={list.id}>
-                    <Textarea>{list.text}</Textarea>
+                    <Textarea
+                    isReadOnly={edit}
+                    >
+                        {list.text}
+                    </Textarea>
                     <IconButton
                     icon={<Trash />}
                     onClick={() => Delete(list.id)} 
                     aria-label='DeleteButton'/>
-                    <p>{textInput}</p>
+                    <IconButton
+                    icon={<Edit />}
+                    onClick={EditTask} 
+                    aria-label='EditButton'/>
                 </ListItem> 
             ))}
         </UnorderedList>

@@ -4,7 +4,7 @@ import {Box,ChakraProvider,ColorModeScript} from '@chakra-ui/react'
 import  { theme }  from './styles/theme'
 import { CacheProvider } from '@chakra-ui/next-js'
 import Header from './components/Header/Header'
-import { CountProvider } from './components/Contexts/CrudContex';
+import { CrudProvider } from './components/Contexts/CrudContex';
 
 const inter = Inter({ subsets: ['latin'] }
 )
@@ -23,10 +23,10 @@ export default function RootLayout({
           <CacheProvider>
             <ChakraProvider resetCSS  theme={theme}>
               <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-                <CountProvider>
+                <CrudProvider>
                       <Header />
                       {children}
-                </CountProvider>
+                </CrudProvider>
             </ChakraProvider>
           </CacheProvider>
         </body>

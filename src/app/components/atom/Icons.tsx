@@ -1,6 +1,6 @@
 "use client";
 import { Box,Heading,Image } from '@chakra-ui/react'
-import { SunIcon } from '@chakra-ui/icons';
+import { EditIcon, SunIcon } from '@chakra-ui/icons';
 
 export const Moon = () => {
     return(
@@ -23,6 +23,13 @@ export const Trash = () => {
         <Image 
         src="/trash.svg" 
         alt='Lixeira Iconer icone' 
+        />
+    )
+}
+export const Edit = () => {
+    return(
+        <EditIcon 
+        aria-label='EditIcon icone' 
         />
     )
 }

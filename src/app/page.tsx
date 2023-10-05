@@ -1,10 +1,7 @@
 "use client";
 import { Box,Flex, useColorModeValue } from '@chakra-ui/react'
-import { useState,useContext} from 'react';
-
 import { EmptyTask } from './components/atom/EmptyTask';
 import { TaskCount } from './components/atom/TaskCount';
-import { CountContext } from './components/Contexts/CrudContex';
 import LisTask from './components/atom/ListTasks';
 
 
@@ -25,10 +22,7 @@ export  const Home = ()=> {
             textAlign="center"
         >
           <TaskCount count={len} countConcluidas={0} />
-            {len > 0 ?  
-              <LisTask />
-            : 
-            <EmptyTask /> 
+            {len > 0 ?  <LisTask /> :  <EmptyTask /> 
           }
         </Flex>
       </Box>
