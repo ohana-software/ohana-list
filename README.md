@@ -1,8 +1,6 @@
 # Ohana List - Projeto de Processo Seletivo para Dev Frontend Junior
 
-Ohana List é um projeto de aplicação web simples que serve como uma ferramenta de To-Do List. Os candidatos deverão implementar uma aplicação que permite ao usuário criar, editar, e deletar tarefas, além de outras funcionalidades que serão detalhadas abaixo.
-
-Você pode visualizar o design do projeto no Figma através [deste link](https://www.figma.com/file/JBueOui85VD9Y9dw3h029K/Desafio---To-do-List?type=design&node-id=0%3A1&mode=design&t=XH7avPt7j6eQiRCR-1).
+Ohana List é um projeto de aplicação web simples que serve como uma ferramenta de To-Do List. 
 
 ## Features Obrigatórias:
 - [ ] **Adicionar Tarefas:** O usuário pode adicionar mais de uma tarefa na lista.
@@ -19,16 +17,9 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 - [ ] **Download da Lista de Tarefas:** Permitir que o usuário faça o download da lista de tarefas.
 - [ ] **Utilizar a Framework Next.js:** Incorporar a framework Next.js no projeto.
 
-## Requisitos Técnicos:
-- A aplicação deve ser desenvolvida utilizando **React.js**.
-- É necessário o uso do framework de componentes **Chakra UI**.
-  
-## Critérios de Avaliação:
-- **Código Limpo:** Organização e legibilidade do código.
-- **Implementação das Features:** Funcionamento correto de todas as features obrigatórias e bônus.
-- **Design:** Adesão ao design proposto no Figma e atenção aos detalhes.
+## Visualizar Projeto:
 
-## Submissão:
-- Faça um fork deste repositório e submeta um pull request quando você terminar.
+https://github.com/F1LIPE08/ohana-list/assets/63832779/a98639e1-b6e9-4bfc-a2ad-7ae8004ea649
 
-Boa sorte com o seu projeto!
+https://ohana-list-livid.vercel.app
+
