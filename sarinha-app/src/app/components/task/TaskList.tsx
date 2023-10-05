@@ -91,34 +91,41 @@ export default function TaskList({ display, tasks }: Props) {
             alignItems="center"
             color="#333"
             fontSize="14px"
+            gap="8px"
             justifyContent="space-between"
           >
             <Box fontWeight={"700"}>
               {selectedTasks.length} de {tasks.length} selecionadas
             </Box>
-            <Flex alignItems="center" gap="10px">
-              <Box as="button" onClick={toggleDeleteMultiple} color="#808080">
-                <ArrowBackIcon />
-                Voltar às opções
-              </Box>
-              <Flex
-                onClick={handleDeleteTasks}
-                as="button"
-                borderRadius="8px"
-                alignItems="center"
-                gap="5px"
-                _hover={{ opacity: "74%" }}
-                p="10px"
-                fontWeight={"700"}
-                fontSize="14px"
-                bg="#E25858"
-                color="white"
-              >
-                Deletar
-                <TrashIcon />
-              </Flex>
+            <Flex
+              onClick={handleDeleteTasks}
+              as="button"
+              borderRadius="8px"
+              alignItems="center"
+              gap="5px"
+              _hover={{ opacity: "74%" }}
+              p="10px"
+              fontWeight={"700"}
+              fontSize="14px"
+              bg="#E25858"
+              color="white"
+            >
+              Deletar
+              <TrashIcon />
             </Flex>
           </Flex>
+          <Box
+            as="button"
+            alignItems="center"
+            fontSize="14px"
+            display={options ? "flex" : "none"}
+            alignSelf="center"
+            onClick={toggleDeleteMultiple}
+            color="#808080"
+          >
+            <ArrowBackIcon />
+            Voltar às opções
+          </Box>
         </Flex>
         <TaskMenu display={!options} toggle={toggleDeleteMultiple} />
       </>
@@ -161,10 +168,13 @@ export default function TaskList({ display, tasks }: Props) {
       display={display}
     >
       <Flex
-        justifyContent="space-between"
+        justifyContent={{ base: "center", sm: "space-between" }}
+        alignItems={{ base: "center", sm: "space-between" }}
+        gap={{ base: "8px", sm: undefined }}
         width="100%"
         fontSize="14px"
         fontWeight={"700"}
+        flexDirection={{ base: "column", sm: "row" }}
       >
         <Flex color="#D57B5A" gap="8px">
           Tarefas criadas

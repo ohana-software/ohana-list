@@ -19,7 +19,7 @@ export default function TaskMenu({ display, toggle }: Props) {
   const tasks = useTasks();
 
   return (
-    <Flex display={display ? "flex" : "none"}>
+    <Flex alignSelf="center" display={display ? "flex" : "none"}>
       <Menu>
         <MenuButton
           fontSize="14px"
