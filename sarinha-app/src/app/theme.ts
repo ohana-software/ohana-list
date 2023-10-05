@@ -37,6 +37,16 @@ const semanticTokens = {
       _light: "#252525",
       _dark: "white",
     },
+    containerBg: {
+      _light: "#F5F5F5",
+      _dark: "base.gray.600",
+    },
+    addTask: {
+      bg: {
+        _light: "base.gray.100",
+        _dark: "base.gray.500",
+      },
+    },
   },
 };
 
