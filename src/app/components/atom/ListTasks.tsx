@@ -7,8 +7,11 @@ import { CountContext } from '../Contexts/CrudContex'
 
 
 const LisTask = () => {
+    const {task,textInput,setTasks} =useContext(CountContext) 
+    function Delete(index:number){
+        setTasks(task.filter((list) => list.id !== index))
+    }
 
-    const {task,textInput,setTextInput} =useContext(CountContext) 
     return (
         <UnorderedList>
             {task.map((list) => (
@@ -16,7 +19,7 @@ const LisTask = () => {
                     <Textarea>{list.text}</Textarea>
                     <IconButton
                     icon={<Trash />}
-                    onClick={() => alert("Deletou" + list.id)} 
+                    onClick={() => Delete(list.id)} 
                     aria-label='DeleteButton'/>
                     <p>{textInput}</p>
                 </ListItem> 
