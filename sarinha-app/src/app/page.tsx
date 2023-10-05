@@ -11,6 +11,7 @@ import {
 } from "./context/TaskContext";
 import { Spinner } from "@chakra-ui/react";
 import Header from "./components/Header";
+import Loader from "./components/Loader";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -48,26 +49,7 @@ export default function Home() {
     <main className="container">
       <Header />
 
-      <Center
-        textAlign="center"
-        p="100px"
-        fontSize="16px"
-        color="#808080"
-        display={loading ? "block" : "none"}
-      >
-        <Flex flexDirection="column" alignItems="center" gap="16px">
-          <Spinner w="56px" h="56px" />
-          <Box as="p" lineHeight="22.4px">
-            <Box as="span" fontWeight={"700"}>
-              Aguarde, por favor
-            </Box>
-            <br />
-            <Box as="span" fontWeight={"400"}>
-              Carregando informações...
-            </Box>
-          </Box>
-        </Flex>
-      </Center>
+      <Loader loading={loading} />
 
       <TasksContext.Provider value={tasks}>
         <TasksDispatchContext.Provider value={dispatch}>
