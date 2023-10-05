@@ -3,11 +3,14 @@ import { Box,Flex, useColorModeValue } from '@chakra-ui/react'
 import { EmptyTask } from './components/atom/EmptyTask';
 import { TaskCount } from './components/atom/TaskCount';
 import LisTask from './components/atom/ListTasks';
+import { useContext } from 'react';
+import { CountContext } from './components/Contexts/CrudContex';
 
 
 export  const Home = ()=> {
   const bgMain = useColorModeValue('white.600', 'gray.600')
-  const len = 1
+  const {task} = useContext(CountContext)
+  const len = task.length
   return(
       <Box 
       as="main" 

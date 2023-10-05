@@ -36,6 +36,7 @@ export const SearchBar = () => {
         flexDirection={{base:"column",md:"row"}}
         >
                 <Input 
+                value={textInput}
                 onChange={(e) =>{setTextInput(e.target.value)}}
                 placeholder='Adicione uma nova tarefa'
                 _placeholder={{ color: cPlace }}
