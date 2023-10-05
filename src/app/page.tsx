@@ -1,28 +1,16 @@
 "use client";
 import { Box,Flex, useColorModeValue } from '@chakra-ui/react'
-import { useState } from 'react';
+import { useState,useContext} from 'react';
 
 import { EmptyTask } from './components/atom/EmptyTask';
 import { TaskCount } from './components/atom/TaskCount';
+import { CountContext } from './components/Contexts/CrudContex';
+import LisTask from './components/atom/ListTasks';
 
-interface props{
 
-  tasks: {
-  id: number;
-  checked: boolean;
-  text: string;
-  }[]
-
-  count:number
-  onComplete:boolean
-  onCreate:(event: any,taskId: number) => void
-  onDelete:(taskId: number) => void
-
-}
-
-export  const Home: React.FC<props> = ({count,onCreate,onComplete,onDelete}) => {
-  const len = 0
+export  const Home = ()=> {
   const bgMain = useColorModeValue('white.600', 'gray.600')
+  const len = 1
   return(
       <Box 
       as="main" 
@@ -36,8 +24,12 @@ export  const Home: React.FC<props> = ({count,onCreate,onComplete,onDelete}) => 
             flexDirection="column"
             textAlign="center"
         >
-          <TaskCount count={0} countConcluidas={0} />
-          {len > 0 ?  <Box>vai ter um tarefa aqui</Box> : <EmptyTask /> }
+          <TaskCount count={len} countConcluidas={0} />
+            {len > 0 ?  
+              <LisTask />
+            : 
+            <EmptyTask /> 
+          }
         </Flex>
       </Box>
   )

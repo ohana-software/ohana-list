@@ -10,6 +10,7 @@ interface props{
 export const TaskCount: React.FC<props> = ({count, countConcluidas}) => {
     const bgCount = useColorModeValue('gray.200', 'gray.400');
 
+
     return (
             <Flex
             alignItems="center"
