@@ -27,6 +27,24 @@ const colors = {
   },
 };
 
+const semanticTokens = {
+  colors: {
+    headerBg: {
+      _light: "base.gray.200",
+      _dark: "base.gray.700",
+    },
+    headerIcon: {
+      _light: "#252525",
+      _dark: "white",
+    },
+  },
+};
+
+const config = {
+  initialColorMode: "system",
+  useSystemColorMode: true,
+};
+
 const fontSizes = {
   xs: "12px",
   sm: "14px",
@@ -48,4 +66,6 @@ export const theme = extendTheme({
   colors,
   fontSizes,
   fontWeights,
+  semanticTokens,
+  config,
 });
