@@ -101,6 +101,7 @@ export default function TaskDetail({ task, editMode }: Props) {
         textDecoration={taskDecoration}
         display={descriptionInput ? "none" : "block"}
         onClick={toggleInput}
+        overflowWrap="anywhere"
       >
         {task.description ? task.description : "(Sem descrição)"}
       </Box>
