@@ -44,7 +44,6 @@ export default function TaskDetail({ task, editMode }: Props) {
   }
 
   async function toggleInput(e: any) {
-    console.log(inputRef);
     if (inputActive) return setinputActive(false);
 
     await setinputActive(true);
