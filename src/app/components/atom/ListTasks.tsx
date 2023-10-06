@@ -1,8 +1,7 @@
 import { Box, useColorMode, UnorderedList, Textarea, ListItem, IconButton, Checkbox, Button, Icon } from '@chakra-ui/react'
-import { PadUnlock, Padlock, Trash } from './Icons';
+import { PadUnlock, Padlock, Trash,CheckIco } from './Icons';
 import { useContext, useState } from 'react'
 import { CountContext } from '../Contexts/CrudContex'
-import { CheckIcon } from '@chakra-ui/icons';
 
 const LisTask = () => {
     const { task, setTasks,isChecked,setIsChecked } = useContext(CountContext)
@@ -61,7 +60,7 @@ const LisTask = () => {
     return (
     <>
         <UnorderedList
-            w="51.112%"
+            w={{base:"90%",md:"51.112%"}}
             h="50vh"
             listStyleType="none"
             overflowX="hidden"
@@ -105,16 +104,9 @@ const LisTask = () => {
                         >
                         </Checkbox>
                         {isChecked[index] && (
-                        <Icon
-                                as={CheckIcon} // Use o ícone de marca de seleção do Chakra UI
-                                w={2}
-                                h={2}
-                                color="white"
-                                position="absolute"
-                                top="50%"
-                                left="50%"
-                                transform="translate(-50%, -50%)"
-                            />
+
+                            <CheckIco />
+
                         )}
                 </Box>
                     <IconButton

@@ -15,15 +15,16 @@ export const TaskCount: React.FC<props> = ({count, countConcluidas}) => {
             <Flex
             alignItems="center"
             justifyContent="space-between"
-            flexDirection="row"
-            textAlign="center"
+            flexDirection={{base:"column",md:"row"}}
             gap="6"
             padding="90px 0 24px 0"
             w="51.112%"
         >
-            <Text   as="span"
-                    display="flex"
-                    gap="2"
+            <Text   
+                as="span"
+                display="flex"
+                flexDirection={{base:"column",md:"row"}}
+                gap="2"
             >
                 <Text color="orange.Light" >Tarefas criadas </Text>
                 <Box 
@@ -35,9 +36,10 @@ export const TaskCount: React.FC<props> = ({count, countConcluidas}) => {
                 </Box>
             </Text>
 
-            <Text as="span" 
+            <Text 
+            as="span" 
             display="flex"
-            flexDirection="row"
+            flexDirection={{base:"column",md:"row"}}
             gap="2"
             alignItems="center"
             >

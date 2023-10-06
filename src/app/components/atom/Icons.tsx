@@ -1,5 +1,5 @@
 "use client";
-import { Image } from '@chakra-ui/react'
+import { Icon, Image } from '@chakra-ui/react'
 import { LockIcon,  SunIcon, UnlockIcon,CheckIcon } from '@chakra-ui/icons';
 
 export const Moon = () => {
@@ -37,6 +37,20 @@ export const PadUnlock = () => {
     return(
         <UnlockIcon 
         aria-label='CloseIcon icone' 
+        />
+    )
+}
+export const CheckIco = () => {
+    return(
+        <Icon
+            as={CheckIcon} // Use o ícone de marca de seleção do Chakra UI
+            w={2}
+            h={2}
+            color="white"
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
         />
     )
 }
