@@ -37,15 +37,21 @@ export const TaskCount: React.FC<props> = ({count, countConcluidas}) => {
 
             <Text as="span" 
             display="flex"
+            flexDirection="row"
             gap="2"
+            alignItems="center"
             >
                 <Text color="pink.25">Concluídas</Text>
                 <Box
                     bg={bgCount}
                     p="2px 8px"
                     borderRadius="32px"
+                    display="flex"
+                    gap="2"
                 >
                     {countConcluidas}
+                    <Text>de</Text>
+                    {count}
                 </Box>
             </Text>
         </Flex>

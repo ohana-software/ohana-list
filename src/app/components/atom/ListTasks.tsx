@@ -1,32 +1,65 @@
-"use client";
-import {Box,useColorMode,UnorderedList,Textarea,ListItem,IconButton, Checkbox} from '@chakra-ui/react'
-import { Edit, Trash } from './Icons';
+import { Box, useColorMode, UnorderedList, Textarea, ListItem, IconButton, Checkbox, Button, Icon } from '@chakra-ui/react'
+import { PadUnlock, Padlock, Trash } from './Icons';
 import { useContext, useState } from 'react'
 import { CountContext } from '../Contexts/CrudContex'
-
-
+import { CheckIcon } from '@chakra-ui/icons';
 
 const LisTask = () => {
-    const {task,setTasks,isChecked,setIsChecked} =useContext(CountContext) 
-    const { colorMode } = useColorMode()
-    const [edit,setEdits] = useState(true)
+    const { task, setTasks,isChecked,setIsChecked } = useContext(CountContext)
 
-    function Delete(index:number){
+    const { colorMode } = useColorMode()
+
+    const [edits, setEdits] = useState(Array(task.length).fill(true));
+    const [editIcons, setEditIcons] = useState(Array(task.length).fill(false));
+
+    const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
+
+    function Delete(index: number) {
         setTasks(task.filter((list) => list.id !== index))
     }
 
-    function EditTask(){
-        if(edit == true){
-            setEdits(false)
-        }
-        else{
-            setEdits(true)
+    function DeleteSelectedTasks() {
+
+    const newTasks = task.filter((_, index) => !selectedTasks.includes(index));
+    
+    setTasks(newTasks);
+    
+    setSelectedTasks([]);
+}
+
+    function EditTask(index: number) {
+        const newEdits = [...edits];
+        newEdits[index] = !newEdits[index];
+
+        setEdits(newEdits);
+
+        const newEditIcons = [...editIcons];
+        newEditIcons[index] = !newEditIcons[index];
+        setEditIcons(newEditIcons);
+        
+        if (selectedTasks.includes(index)) {
+            setSelectedTasks(selectedTasks.filter((taskIndex) => taskIndex !== index));
+        } else {
+            setSelectedTasks([...selectedTasks, index]);
         }
     }
-    const modeColor = colorMode === 'light' ? 'gray.400' : 'gray.100'
-    
+
+
+    function checkButton(index:number) {
+            setIsChecked((prevChecked) => {
+            const newChecked = [...prevChecked];
+            newChecked[index] = !newChecked[index];
+            return newChecked;
+            });
+    }
+
+
+
+    const modeColor = colorMode === 'light' ? 'gray.400' : 'gray.100';
+    const bgColorTextArea = colorMode === 'light' ? 'gray.100' : 'gray.600';
 
     return (
+    <>
         <UnorderedList
             w="51.112%"
             h="50vh"
@@ -36,69 +69,97 @@ const LisTask = () => {
             flexDirection="column"
             gap="3"
         >
-            {task.map((list) => (
-                <ListItem 
+            {task.map((list, index) => (
+                <ListItem
                     key={list.id}
                     display="flex"
-                    alignItems="flex-start"
+                    alignItems="center"
                     p="16px"
                     gap="3"
                     borderRadius="8px"
                     border="1px"
                     borderColor={colorMode === 'light' ? 'gray.200' : 'gray.500'}
-                    bg={ colorMode === 'light' ? 'gray.200' : 'gray.400'}
+                    bg={colorMode === 'light' ? 'gray.200' : 'gray.400'}
                     boxShadow="0px 2px 8px 0px rgba(0, 0, 0, 0.06)"
                     w="100%"
-                    h={{base:"36px",md:"72px"}}
+                    h={{ base: "36px", md: "72px" }}
                 >
-                    <Checkbox
-                    position="relative"
-
-                    display="block"
-                    isChecked={isChecked}
-                    onChange={()=>{setIsChecked(!isChecked)}}
+                <Box
+                        as="label"
+                        htmlFor={`checkbox-${index}`}
+                        w="1.125em"
+                        h="1.125em"
+                        borderRadius="64px"
+                        border={isChecked[index] ? "1px solid #B22D95" :"1px solid #D57B5A"}
+                        position="relative"
+                        transition="background-color 0.3s ease-in-out"
+                        bg={isChecked[index] ? 'pink.Dark' : 'transparent'} 
+                        cursor="pointer"
                     >
-                        <Box
-                            as="div"
-                            w="18px"
-                            h="18px"
-                            borderRadius="32px"
-                            border="1px solid #D57B5A"
-                            position="absolute"
-                            overflowX="hidden"
-                            overflowY="hidden"
-                            top="0"
-                            left="0"
+                    <Checkbox
+                        name={`checkbox-${index}`}
+                        id={`checkbox-${index}`}
+                        isChecked={isChecked[index]}
+                        onChange={() => checkButton(index)}
+                        visibility='hidden'
                         >
-                        </Box>
-                    </Checkbox>
-
-                        <IconButton
-                        icon={<Edit />}
-                        onClick={EditTask} 
-                        aria-label='EditButton'/>
-                        <Textarea
-                        isReadOnly={edit}
+                        </Checkbox>
+                        {isChecked[index] && (
+                        <Icon
+                                as={CheckIcon} // Use o ícone de marca de seleção do Chakra UI
+                                w={2}
+                                h={2}
+                                color="white"
+                                position="absolute"
+                                top="50%"
+                                left="50%"
+                                transform="translate(-50%, -50%)"
+                            />
+                        )}
+                </Box>
+                    <IconButton
+                        icon={editIcons[index] == true ? <PadUnlock  /> : <Padlock />}
+                        onClick={() => EditTask(index)}
+                        _hover={{bg:"orange.Light"}}
+                        aria-label='EditButton'
+                        bg="transparent"
+                    />
+                    <Textarea
+                        isReadOnly={edits[index]} 
                         w="100%"
                         rows={2}
                         p="0"
                         lineHeight="140%"
-                        fontSize="14px"
+                        bg={editIcons[index] == true ?  bgColorTextArea : 'transparent'}
+                        fontSize="14"
                         border="none"
                         resize="none"
-                        color={isChecked === true ? 'gray.300' : modeColor }
-                        textDecoration={isChecked === true ? 'line-through' : 'none'}
-                        >
-                            {list.text}
-                        </Textarea>
-                        <IconButton
+                        color={isChecked[index] ? 'gray.300' : modeColor}
+                        textDecoration={isChecked[index] ? 'line-through' : 'none'}
+                    >
+                        {list.text}
+                    </Textarea>
+                    <IconButton
                         icon={<Trash />}
-                        onClick={() => Delete(list.id)} 
-                        aria-label='DeleteButton'/>
-                    </ListItem> 
+                        onClick={() => Delete(list.id)}
+                        _hover={{bg:"red.200"}}
+                        aria-label='DeleteButton'
+                        bg="transparent"
+                    />
+                </ListItem>
             ))}
         </UnorderedList>
-        );
-    };
+        <Button
+            onClick={DeleteSelectedTasks}
+            color={colorMode === 'light' ? 'red.400' : "red.200"}
+            bg="transparent"
+            _hover={{background:"red.500",color:"red.900"}}
+            marginTop="8px"
+        >
+            Excluir Tarefas Abertas
+        </Button>
+    </>
+    );
+};
 
 export default LisTask;

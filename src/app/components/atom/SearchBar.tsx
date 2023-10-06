@@ -16,7 +16,7 @@ export const SearchBar = () => {
     function CreateTask(){
         if(textInput !== ""){
             setTasks((prev) => {
-                return [...prev, {id:Math.random(),text:textInput}]
+                return [...prev, {id:Math.random(),text:textInput,isChecked:false}]
             })
             setTextInput("")
         }

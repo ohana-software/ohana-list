@@ -47,6 +47,7 @@ export const theme = extendTheme({
             },
         pink:{
             "25":"#BF477E",
+            "Dark":"#B22D95"
         },
         },
     breakpoints,

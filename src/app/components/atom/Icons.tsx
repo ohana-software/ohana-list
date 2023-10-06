@@ -1,6 +1,6 @@
 "use client";
-import { Box,Heading,Image } from '@chakra-ui/react'
-import { EditIcon, SunIcon } from '@chakra-ui/icons';
+import { Image } from '@chakra-ui/react'
+import { LockIcon,  SunIcon, UnlockIcon,CheckIcon } from '@chakra-ui/icons';
 
 export const Moon = () => {
     return(
@@ -26,10 +26,17 @@ export const Trash = () => {
         />
     )
 }
-export const Edit = () => {
+export const Padlock = () => {
     return(
-        <EditIcon 
+        <LockIcon 
         aria-label='EditIcon icone' 
+        />
+    )
+}
+export const PadUnlock = () => {
+    return(
+        <UnlockIcon 
+        aria-label='CloseIcon icone' 
         />
     )
 }
