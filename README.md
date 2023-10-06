@@ -32,3 +32,7 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 - Faça um fork deste repositório e submeta um pull request quando você terminar.
 
 Boa sorte com o seu projeto!
+
+## Imagem do Projeto
+![image](https://github.com/LNeves001/ohana-list/assets/130421967/10c83a89-4c2f-40e7-9d38-efd9a319b6cd)
+
