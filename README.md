@@ -9,8 +9,8 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 - [ ] **Deletar Tarefa:** O usuário pode apagar uma tarefa da lista.
 - [] **Deletar Tarefas Multiplas:** O usuário pode apagar mais de uma tarefa na lista ao mesmo tempo.
 - [ ] **Editar Tarefa:** O usuário pode editar uma tarefa da lista.
-- [] **Tarefa Concluída:** Quando uma tarefa for concluída ela deve ficar riscada.
-- [] **Contador de Tarefas Criadas:** O usuário precisa ver quantas tarefas foram criadas.
+- [ ] **Tarefa Concluída:** Quando uma tarefa for concluída ela deve ficar riscada.
+- [ ] **Contador de Tarefas Criadas:** O usuário precisa ver quantas tarefas foram criadas.
 - [] **Contador de Tarefas Executadas:** O usuário precisa ver quantas tarefas já foram executadas.
 
 ## Features Bônus:
