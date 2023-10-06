@@ -1,14 +1,22 @@
-import { Box,Heading,IconButton,Input,Button,Flex } from '@chakra-ui/react'
+"use client";
+import { Box,Heading,IconButton,Input,Button,Flex, useColorModeValue } from '@chakra-ui/react'
 import { SearchBar } from '../atom/SearchBar'
 import { BtnTheme } from '../atom/ThemeBtn'
-import { Plus } from '../atom/Icons'
+import { useContext } from 'react';
+import { CountContext } from '../Contexts/CrudContex';
+
+
 
 export default function Header() {
+    const bgHeader = useColorModeValue('gray.200', 'gray.700')
+
+    const {task,setTextInput,textInput} =useContext(CountContext)
+
     return(
         <Box as="header"
         w="100vw"
-        h="18.183vh"
-        bg="gray.200"
+        h="20vh"
+        bg={bgHeader}
         textAlign="center"
         verticalAlign="middle"
         display="table-cell"

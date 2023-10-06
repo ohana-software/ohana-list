@@ -1,13 +1,10 @@
 "use client";
-import {IconButton,Heading, useColorMode,Button } from '@chakra-ui/react'
-import { Moon,Sun } from '../atom/Icons'
-
+import {IconButton,useColorMode } from '@chakra-ui/react';
+import { Moon,Sun } from '../atom/Icons';
 
 export const BtnTheme = () => {
     const { colorMode, toggleColorMode } = useColorMode()
-
     return(
-        <>
             <IconButton 
                 colorScheme="transparent"
                 aria-label='botão mudar tema'
@@ -19,6 +16,5 @@ export const BtnTheme = () => {
                 w={{base:"5vh",md:"35px",lg:"35px"}} 
                 onClick={toggleColorMode}
             />
-        </>
     )
 }
