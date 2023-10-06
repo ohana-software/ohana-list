@@ -24,7 +24,7 @@ export default function TaskMenu({ display, toggle }: Props) {
         <MenuButton as={Button}>
           Opções <ChevronDownIcon w="20px" h="20px" />
         </MenuButton>
-        <MenuList bgColor="#ECB62A">
+        <MenuList bgColor="product.yellow-button">
           <MenuItem
             as={Flex}
             gap="6px"
@@ -35,8 +35,8 @@ export default function TaskMenu({ display, toggle }: Props) {
               color: "white",
               cursor: "pointer",
             }}
-            fontSize="14px"
-            fontWeight={"700"}
+            fontSize="sm"
+            fontWeight="bold"
             onClick={() => exportExcel(tasks, "Tarefas")}
           >
             Download
@@ -53,8 +53,8 @@ export default function TaskMenu({ display, toggle }: Props) {
               color: "white",
               cursor: "pointer",
             }}
-            fontSize="14px"
-            fontWeight={"700"}
+            fontSize="sm"
+            fontWeight="bold"
           >
             Deletar várias
             <TrashIcon />

@@ -1,23 +1,24 @@
-import { Box, Button, Center, Flex } from "@chakra-ui/react";
-import TaskDetail from "./TaskDetail";
-import Task from "../../models/Task";
-import ClipboardIcon from "../icons/ClipboardIcon";
-import { ArrowBackIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import TrashIcon from "../icons/TrashIcon";
-import { useRef, useState } from "react";
+"use client";
+
+import { CheckCircleIcon, ArrowBackIcon } from "@chakra-ui/icons";
+import { Flex, Button, Center, Box } from "@chakra-ui/react";
 import CircleIcon from "../icons/CircleIcon";
+import ClipboardIcon from "../icons/ClipboardIcon";
+import TrashIcon from "../icons/TrashIcon";
+import TaskDetail from "./TaskDetail";
 import TaskMenu from "./TaskMenu";
 import { useTasksDispatch } from "@/app/context/TaskContext";
+import { useState, useRef } from "react";
+import Task from "@/app/models/Task";
 
-interface Props {
+type Props = {
   tasks: Task[];
-}
+};
 export default function TaskList({ tasks }: Props) {
   const [options, setOptions] = useState(false);
   const [editMode, setEditMode] = useState(true);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
   const optionsRef = useRef<HTMLInputElement>(null);
-  const finishedTasks = tasks.filter((task) => task.finished == true);
   const dispatch = useTasksDispatch();
 
   function toggleDeleteMultiple() {
@@ -45,6 +46,14 @@ export default function TaskList({ tasks }: Props) {
     setSelectedTasks([...selectedTasks, id]);
   }
 
+  function handleSelectAllTasks() {
+    setSelectedTasks(tasks.map((task) => task.id));
+  }
+
+  function handleUnselectAllTasks() {
+    setSelectedTasks([]);
+  }
+
   function handleUnselectTask(id: number) {
     setSelectedTasks(selectedTasks.filter((taskId) => taskId != id));
   }
@@ -54,6 +63,7 @@ export default function TaskList({ tasks }: Props) {
   };
 
   let dashboard;
+
   if (tasks.length > 0) {
     dashboard = (
       <>
@@ -67,7 +77,6 @@ export default function TaskList({ tasks }: Props) {
                   !isTaskSelected(task.id) && !editMode ? "block" : "none"
                 }
                 onClick={() => handleSelectTask(task.id)}
-                color="task.color"
                 width="20px"
                 height="20px"
               />
@@ -77,7 +86,6 @@ export default function TaskList({ tasks }: Props) {
                   isTaskSelected(task.id) && !editMode ? "block" : "none"
                 }
                 onClick={() => handleUnselectTask(task.id)}
-                color="task.color"
                 width="20px"
                 height="20px"
               />
@@ -88,14 +96,34 @@ export default function TaskList({ tasks }: Props) {
             display={options ? "flex" : "none"}
             ref={optionsRef}
             alignItems="center"
-            color="task.color"
-            fontSize="14px"
+            fontSize="sm"
             gap="8px"
             justifyContent="space-between"
           >
-            <Box fontWeight={"700"}>
-              {selectedTasks.length} de {tasks.length} selecionadas
-            </Box>
+            <Flex
+              gap="10px"
+              flexDirection={{ base: "column", sm: "row" }}
+              fontSize={{ base: "xs", sm: "sm" }}
+            >
+              <CircleIcon
+                cursor="pointer"
+                as="button"
+                display={selectedTasks.length < tasks.length ? "block" : "none"}
+                onClick={handleSelectAllTasks}
+                width="20px"
+                height="20px"
+              />
+              <CheckCircleIcon
+                cursor="pointer"
+                display={selectedTasks.length < tasks.length ? "none" : "block"}
+                onClick={handleUnselectAllTasks}
+                width="20px"
+                height="20px"
+              />
+              <Box fontWeight="bold">
+                {selectedTasks.length} de {tasks.length} selecionadas
+              </Box>
+            </Flex>
             <Flex>
               <Button variant="red" onClick={handleDeleteTasks}>
                 Deletar
@@ -106,11 +134,10 @@ export default function TaskList({ tasks }: Props) {
           <Box
             as="button"
             alignItems="center"
-            fontSize="14px"
+            fontSize="sm"
             display={options ? "flex" : "none"}
             alignSelf="center"
             onClick={toggleDeleteMultiple}
-            color="#808080"
           >
             <ArrowBackIcon />
             Voltar às opções
@@ -146,54 +173,5 @@ export default function TaskList({ tasks }: Props) {
     );
   }
 
-  return (
-    <Flex
-      w="90%"
-      maxWidth="736px"
-      m="0 auto"
-      mt="64px"
-      gap="24px"
-      flexDirection="column"
-    >
-      <Flex
-        justifyContent={{ base: "center", sm: "space-between" }}
-        alignItems={{ base: "center", sm: "space-between" }}
-        gap={{ base: "10px", sm: undefined }}
-        width="100%"
-        fontSize="14px"
-        fontWeight={"700"}
-        flexDirection={{ base: "column", sm: "row" }}
-      >
-        <Flex color="#D57B5A" gap="8px">
-          Tarefas criadas
-          <Flex alignItems="center">
-            <Box
-              p="2px 8px"
-              fontSize="12px"
-              borderRadius="999px"
-              bg="taskLength.bg"
-              color="taskLength.color"
-            >
-              {tasks.length}
-            </Box>
-          </Flex>
-        </Flex>
-        <Flex color="#BF477E" gap="8px">
-          Concluídas
-          <Box
-            p="2px 8px"
-            fontSize="12px"
-            borderRadius="999px"
-            bg="taskLength.bg"
-            color="taskLength.color"
-          >
-            {finishedTasks.length > 0
-              ? `${finishedTasks.length} de ${tasks.length}`
-              : 0}
-          </Box>
-        </Flex>
-      </Flex>
-      {dashboard}
-    </Flex>
-  );
+  return dashboard;
 }

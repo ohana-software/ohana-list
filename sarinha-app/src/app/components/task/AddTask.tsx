@@ -1,8 +1,9 @@
 import { useTasks, useTasksDispatch } from "@/app/context/TaskContext";
 import Task from "@/app/models/Task";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import AddCircleIcon from "../icons/AddCircleIcon";
+import CustomInput from "../theme/CustomInput";
 
 export default function AddTask() {
   const [newTask, setNewTask] = useState<string>("");
@@ -19,7 +20,7 @@ export default function AddTask() {
   function handleAddTask() {
     const task: Task = {
       id: lastId(),
-      description: newTask,
+      description: newTask.length < 1 ? "(Sem descrição)" : newTask,
       finished: false,
     };
 
@@ -32,23 +33,11 @@ export default function AddTask() {
 
   return (
     <Flex w="90%" maxWidth="736px" gap="8px" m="0 auto" mt="-28px">
-      <Box
-        as="input"
-        bg="addTask.bg"
-        _placeholder={{ color: "base.gray.300" }}
+      <CustomInput
         placeholder="Adicione uma nova tarefa"
-        fontSize="16"
-        fontWeight="regular"
-        width="100%"
-        borderRadius="8px"
-        border="1px"
-        borderColor="addTask.border"
-        _focus={{ outline: "none", borderColor: "product.dark-pink" }}
-        p="16px"
         value={newTask}
         onChange={handleNewTask}
       />
-
       <Flex>
         <Button h="100%" onClick={handleAddTask}>
           Criar

@@ -11,7 +11,7 @@ import {
 import Header from "./components/Header";
 import Loader from "./components/Loader";
 import AddTask from "./components/task/AddTask";
-import TaskList from "./components/task/TaskList";
+import TaskDashboard from "./components/task/TaskDashboard";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function Home() {
         <TasksContext.Provider value={tasks}>
           <TasksDispatchContext.Provider value={dispatch}>
             <AddTask />
-            <TaskList tasks={tasks} />
+            <TaskDashboard tasks={tasks} />
           </TasksDispatchContext.Provider>
         </TasksContext.Provider>
       )}

@@ -1,20 +1,23 @@
 "use client";
-import { Box, Flex, Input, useStatStyles } from "@chakra-ui/react";
+import { Flex, Input } from "@chakra-ui/react";
 import TrashIcon from "../icons/TrashIcon";
 import CircleIcon from "../icons/CircleIcon";
 import CheckCircleIcon from "../icons/CheckCircleIcon";
 import Task from "../../models/Task";
 import { useTasksDispatch } from "@/app/context/TaskContext";
 import { useRef, useState } from "react";
+import TaskContainer from "./TaskContainer";
+import Description from "../theme/Description";
 
 interface Props {
   task: Task;
   editMode: boolean;
 }
 export default function TaskDetail({ task, editMode }: Props) {
-  const [descriptionInput, setDescriptionInput] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [inputActive, setinputActive] = useState(false);
+  const inputRef = useRef<any>(null);
   const dispatch = useTasksDispatch();
+  const variant = task.finished ? "finished" : "unfinished";
 
   function handleDeleteTask() {
     dispatch({
@@ -39,47 +42,26 @@ export default function TaskDetail({ task, editMode }: Props) {
     });
   }
 
-  async function toggleInput() {
-    if (descriptionInput) return setDescriptionInput(false);
+  async function toggleInput(e: any) {
+    console.log(inputRef);
+    if (inputActive) return setinputActive(false);
 
-    await setDescriptionInput(true);
+    await setinputActive(true);
     inputRef.current!.focus();
   }
 
-  let boxShadow;
   let circleIcon;
-  let trashColor;
-  let taskColor;
-  let taskDecoration;
-  let bgColor;
   if (task.finished) {
-    boxShadow = undefined;
     circleIcon = (
       <CheckCircleIcon w="18px" h="18px" color="#B22D95" checkcolor="#D9D9D9" />
     );
-    trashColor = "#808080";
-    taskColor = "task.finished.color";
-    taskDecoration = "line-through";
-    bgColor = "task.finished.bg";
   } else {
-    boxShadow = "0px 2px 8px 0px rgba(0, 0, 0, 0.06)";
     circleIcon = <CircleIcon w="18px" h="18px" color="#D57B5A" />;
-    trashColor = "#E25858";
-    taskColor = "task.color";
-    taskDecoration = undefined;
-    bgColor = "task.bg";
   }
 
   return (
-    <Flex
-      p="16px"
-      gap="12px"
-      bg={bgColor}
-      borderRadius="8px"
-      border="1px"
-      borderColor="task.border"
-      boxShadow={boxShadow}
-      w="100%"
+    <TaskContainer
+      variant={variant}
       pointerEvents={editMode ? undefined : "none"}
     >
       <Flex
@@ -91,32 +73,21 @@ export default function TaskDetail({ task, editMode }: Props) {
       >
         {circleIcon}
       </Flex>
-      <Box
+
+      <Description
         as="p"
-        w="100%"
-        fontSize="14px"
-        fontWeight={"400"}
-        lineHeight="task.lineHeight"
-        color={taskColor}
-        textDecoration={taskDecoration}
-        display={descriptionInput ? "none" : "block"}
+        display={inputActive ? "none" : "block"}
+        variant={variant}
         onClick={toggleInput}
-        overflowWrap="anywhere"
       >
-        {task.description ? task.description : "(Sem descrição)"}
-      </Box>
-      <Box
+        {task.description}
+      </Description>
+
+      <Input
+        display={inputActive ? "block" : "none"}
         ref={inputRef}
-        bg={bgColor}
-        as="input"
-        w="100%"
-        fontSize="14px"
-        fontWeight={"400"}
-        lineHeight="19.6px"
-        color={taskColor}
         value={task.description}
         onChange={handleUpdateTask}
-        display={descriptionInput ? "block" : "none"}
         onBlur={toggleInput}
       />
 
@@ -129,8 +100,12 @@ export default function TaskDetail({ task, editMode }: Props) {
         alignItems="center"
         onClick={handleDeleteTask}
       >
-        <TrashIcon width="13px" height="14px" color={trashColor} />
+        <TrashIcon
+          width="13px"
+          height="14px"
+          color={task.finished ? "base.gray.300" : "product.danger"}
+        />
       </Flex>
-    </Flex>
+    </TaskContainer>
   );
 }
