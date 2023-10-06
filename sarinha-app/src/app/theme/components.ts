@@ -42,14 +42,15 @@ export const Description = defineStyleConfig({
     w: "100%",
     fontWeight: "regular",
     overflowWrap: "anywhere",
+    fontSize: "sm",
   },
   variants: {
-    unfinishedTask: {
+    unfinished: {
       bg: "task.container.unfinished.bg",
       color: "task.unfinished.color",
       textDecoration: undefined,
     },
-    finishedTask: {
+    finished: {
       color: "base.gray.300",
       bg: "task.container.finished.bg",
       textDecoration: "line-through",

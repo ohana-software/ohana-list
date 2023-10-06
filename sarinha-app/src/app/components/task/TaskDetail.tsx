@@ -8,6 +8,7 @@ import { useTasksDispatch } from "@/app/context/TaskContext";
 import { useRef, useState } from "react";
 import TaskContainer from "./TaskContainer";
 import Description from "../theme/Description";
+import CircleBgIcon from "../icons/CircleBgIcon";
 
 interface Props {
   task: Task;
@@ -53,10 +54,36 @@ export default function TaskDetail({ task, editMode }: Props) {
   let circleIcon;
   if (task.finished) {
     circleIcon = (
-      <CheckCircleIcon w="18px" h="18px" color="#B22D95" checkcolor="#D9D9D9" />
+      <CheckCircleIcon
+        w="18px"
+        h="18px"
+        color="product.dark-pink"
+        checkcolor="base.gray.200"
+        _hover={{ color: "product.pink" }}
+      />
     );
   } else {
-    circleIcon = <CircleIcon w="18px" h="18px" color="#D57B5A" />;
+    circleIcon = (
+      <>
+        <CircleIcon
+          display="block"
+          _groupHover={{ display: "none" }}
+          w="18px"
+          h="18px"
+          color="product.light-orange"
+        />
+        <CircleBgIcon
+          display="none"
+          _groupHover={{
+            display: "block",
+          }}
+          w="18px"
+          h="18px"
+          backcolor="#ECB62A"
+          color="product.yellow-button"
+        />
+      </>
+    );
   }
 
   return (
@@ -70,6 +97,7 @@ export default function TaskDetail({ task, editMode }: Props) {
         h="24px"
         p="3.273px"
         onClick={handleUpdateStatus}
+        role="group"
       >
         {circleIcon}
       </Flex>
@@ -84,6 +112,9 @@ export default function TaskDetail({ task, editMode }: Props) {
       </Description>
 
       <Input
+        fontSize="sm"
+        p="0"
+        m="0"
         display={inputActive ? "block" : "none"}
         ref={inputRef}
         value={task.description}
@@ -99,11 +130,15 @@ export default function TaskDetail({ task, editMode }: Props) {
         justifyContent="center"
         alignItems="center"
         onClick={handleDeleteTask}
+        _hover={{ bgColor: "base.gray.400", color: "product.danger" }}
+        role="group"
+        borderRadius="4px"
       >
         <TrashIcon
           width="13px"
           height="14px"
           color={task.finished ? "base.gray.300" : "product.danger"}
+          _groupHover={{ color: "#E25858" }}
         />
       </Flex>
     </TaskContainer>
