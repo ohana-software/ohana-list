@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { CountContext } from './components/Contexts/CrudContex';
 
 
-const Home = ()=> {
+export default function Home() {
   const bgMain = useColorModeValue('white.600', 'gray.600')
   const { task,isChecked } = useContext(CountContext)
   const len = task.length
@@ -36,5 +36,3 @@ const completedTasksCount = completedTasks.length;
       </Box>
   )
 }
-
-export default Home;
