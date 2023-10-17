@@ -1,4 +1,4 @@
-import { Box, useColorMode, UnorderedList, Textarea, ListItem, IconButton, Checkbox, Button, Icon } from '@chakra-ui/react'
+import { Box, useColorMode, UnorderedList, Textarea, ListItem, IconButton, Checkbox, Button } from '@chakra-ui/react'
 import { PadUnlock, Padlock, Trash,CheckIco } from './Icons';
 import { useContext, useState } from 'react'
 import { CountContext } from '../Contexts/CrudContex'
@@ -8,7 +8,6 @@ const LisTask = () => {
 
     const { colorMode } = useColorMode()
 
-    const [edits, setEdits] = useState(Array(task.length).fill(true));
     const [editIcons, setEditIcons] = useState(Array(task.length).fill(false));
 
     const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
@@ -27,11 +26,6 @@ const LisTask = () => {
 }
 
     function EditTask(index: number) {
-        const newEdits = [...edits];
-        newEdits[index] = !newEdits[index];
-
-        setEdits(newEdits);
-
         const newEditIcons = [...editIcons];
         newEditIcons[index] = !newEditIcons[index];
         setEditIcons(newEditIcons);
@@ -117,12 +111,12 @@ const LisTask = () => {
                         bg="transparent"
                     />
                     <Textarea
-                        isReadOnly={edits[index]} 
+                        isReadOnly={editIcons[index] == true ? false : true} 
                         w="100%"
                         rows={2}
                         p="0"
                         lineHeight="140%"
-                        bg={editIcons[index] == true ?  bgColorTextArea : 'transparent'}
+                        bg={editIcons[index] == true ? bgColorTextArea  : 'transparent'}
                         fontSize="14"
                         border="none"
                         resize="none"

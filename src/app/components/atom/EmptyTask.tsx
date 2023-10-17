@@ -1,4 +1,4 @@
-import { Box, Image, Heading, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 
 export  const EmptyTask = ()=> {
     return (

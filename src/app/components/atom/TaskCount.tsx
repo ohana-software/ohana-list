@@ -1,5 +1,5 @@
 "use client";
-import React, {useContext, useState} from 'react'
+import React from 'react'
 import { Box, Flex,Text, useColorModeValue } from '@chakra-ui/react';
 
 interface props{
