@@ -16,7 +16,7 @@ Você pode visualizar o design do projeto no Figma através [deste link](https:/
 ## Features Bônus:
 - [ ] **Mudança de Tema:** Implementar a mudança de tema (escuro e claro) para a aplicação.
 - [ ] **Responsividade:** A aplicação deve ser responsiva para dispositivos móveis.
-- [ ] **Download da Lista de Tarefas:** Permitir que o usuário faça o download da lista de tarefas.
+- [] **Download da Lista de Tarefas:** Permitir que o usuário faça o download da lista de tarefas.
 - [ ] **Utilizar a Framework Next.js:** Incorporar a framework Next.js no projeto.
 
 ## Requisitos Técnicos:
